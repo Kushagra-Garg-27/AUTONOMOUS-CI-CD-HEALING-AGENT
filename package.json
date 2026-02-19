@@ -9,7 +9,7 @@
     "dev:server": "node scripts/dev-server.mjs",
     "build": "npm --prefix frontend run build",
     "preview": "npm --prefix frontend run preview",
-    "start": "node scripts/dev-server.mjs"
+    "start": "tsx backend/server.ts"
 
   },
   "dependencies": {
