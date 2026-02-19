@@ -3,6 +3,7 @@ import { createContext, useContext, useMemo, useState } from 'react';
 const DashboardContext = createContext(null);
 
 const API_TIMEOUT_MS = 180000;
+const BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
 export const DashboardProvider = ({ children }) => {
   const [repoUrl, setRepoUrl] = useState('');
@@ -28,7 +29,7 @@ export const DashboardProvider = ({ children }) => {
     setErrorMessage('');
 
     try {
-      const response = await fetch('/api/agent/runs', {
+      const response = await fetch(`${BASE_URL}/api/agent/runs`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

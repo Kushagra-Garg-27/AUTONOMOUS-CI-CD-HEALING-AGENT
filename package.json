@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
-    "dev:client": "vite",
+    "dev:client": "npm --prefix frontend run dev",
     "dev:server": "node scripts/dev-server.mjs",
-    "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "build": "npm --prefix frontend run build",
+    "preview": "npm --prefix frontend run preview",
+    "start": "node scripts/dev-server.mjs"
+
   },
   "dependencies": {
     "@langchain/langgraph": "^0.2.74",
