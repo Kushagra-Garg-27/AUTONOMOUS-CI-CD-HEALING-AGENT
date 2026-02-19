@@ -1,0 +1,38 @@
+name: Sandbox Runner
+
+on:
+  repository_dispatch:
+    types: [run-sandbox]
+
+jobs:
+  sandbox:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Print payload
+        run: echo "${{ toJson(github.event.client_payload) }}"
+
+      - name: Run Docker sandbox
+        run: |
+          docker --version
+          docker run --rm alpine echo "Sandbox executed successfully"
+
+      - name: Send result back
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const payload = github.event.client_payload;
+
+            await github.rest.repos.createDispatchEvent({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              event_type: "sandbox-complete",
+              client_payload: {
+                runId: payload.runId,
+                status: "completed",
+                message: "Docker executed successfully"
+              }
+            });
