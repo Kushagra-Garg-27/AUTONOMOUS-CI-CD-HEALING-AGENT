@@ -1,0 +1,86 @@
+{
+  "executionTime": 19,
+  "ciStatus": "passed",
+  "failuresCount": 0,
+  "fixesCount": 4,
+  "commitCount": 4,
+  "fixesTable": [
+    {
+      "filePath": "repo/backend/services/audit.py",
+      "bugType": "LINTING",
+      "lineNumber": 9,
+      "commitMessage": "fix(agent): remediate audit.py (batch 1)",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/backend/services/cases.py",
+      "bugType": "SYNTAX",
+      "lineNumber": 10,
+      "commitMessage": "fix(agent): remediate cases.py (batch 1)",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/backend/services/dashboard.py",
+      "bugType": "LOGIC",
+      "lineNumber": 12,
+      "commitMessage": "fix(agent): remediate dashboard.py (batch 2)",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/backend/services/reports.py",
+      "bugType": "TYPE_ERROR",
+      "lineNumber": 13,
+      "commitMessage": "fix(agent): remediate reports.py (batch 2)",
+      "status": "passed"
+    }
+  ],
+  "timeline": [
+    {
+      "iteration": 1,
+      "result": "failed",
+      "timestamp": "2026-02-19T20:46:38.063Z",
+      "retryCount": 1,
+      "retryLimit": 5
+    },
+    {
+      "iteration": 2,
+      "result": "passed",
+      "timestamp": "2026-02-19T20:46:39.063Z",
+      "retryCount": 2,
+      "retryLimit": 5
+    }
+  ],
+  "baseScore": 100,
+  "speedBonus": 10,
+  "efficiencyPenalty": 0,
+  "repoUrl": "https://github.com/Kushagra-Garg-27/SARaansh",
+  "generatedBranchName": "GENZ_TANNU_AI_Fix",
+  "analysisSummary": {
+    "totalFiles": 22,
+    "dominantLanguage": "TypeScript",
+    "samplePaths": [
+      "repo/backend/services/audit.py",
+      "repo/backend/services/cases.py",
+      "repo/backend/services/dashboard.py",
+      "repo/backend/services/reports.py",
+      "repo/App.tsx",
+      "repo/backend/db.py",
+      "repo/backend/main.py",
+      "repo/backend/models.py",
+      "repo/backend/routes/cases.py",
+      "repo/backend/routes/dashboard.py",
+      "repo/backend/routes/reports.py",
+      "repo/components/Badge.tsx",
+      "repo/components/Layout.tsx",
+      "repo/data/mockData.ts",
+      "repo/index.tsx",
+      "repo/pages/AuditLog.tsx",
+      "repo/pages/CaseDetail.tsx",
+      "repo/pages/CasesList.tsx",
+      "repo/pages/Dashboard.tsx",
+      "repo/pages/LandingPage.tsx",
+      "repo/types.ts",
+      "repo/vite.config.ts"
+    ]
+  }
+}

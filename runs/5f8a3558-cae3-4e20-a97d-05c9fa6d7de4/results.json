@@ -1,0 +1,44 @@
+{
+  "executionTime": 13,
+  "ciStatus": "passed",
+  "failuresCount": 0,
+  "fixesCount": 1,
+  "commitCount": 1,
+  "fixesTable": [
+    {
+      "filePath": "repo/.git/config",
+      "bugType": "LINTING",
+      "lineNumber": 11,
+      "commitMessage": "fix(agent): remediation iteration 1",
+      "status": "passed"
+    }
+  ],
+  "timeline": [
+    {
+      "iteration": 1,
+      "result": "passed",
+      "timestamp": "2026-02-19T13:15:37.777Z",
+      "retryCount": 1,
+      "retryLimit": 5
+    }
+  ],
+  "baseScore": 73,
+  "speedBonus": 17,
+  "efficiencyPenalty": 0,
+  "repoUrl": "https://github.com/octocat/Hello-World",
+  "generatedBranchName": "DEMOTEAM_TANISHA_AI_Fix",
+  "analysisSummary": {
+    "totalFiles": 26,
+    "dominantLanguage": "Other",
+    "samplePaths": [
+      "repo/.git/config",
+      "repo/.git/logs/HEAD",
+      "repo/.git/index",
+      "repo/.git/HEAD",
+      "repo/.git/shallow",
+      "repo/.git/info/exclude",
+      "repo/.git/objects/pack/pack-22687ef73ca8dc8a43effda95f5ba16b3959bd82.idx",
+      "repo/.git/objects/pack/pack-22687ef73ca8dc8a43effda95f5ba16b3959bd82.pack"
+    ]
+  }
+}

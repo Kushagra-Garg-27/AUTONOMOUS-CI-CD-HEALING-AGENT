@@ -1,0 +1,44 @@
+{
+  "executionTime": 35,
+  "ciStatus": "passed",
+  "failuresCount": 0,
+  "fixesCount": 1,
+  "commitCount": 1,
+  "fixesTable": [
+    {
+      "filePath": "repo/codebase/src/compiler/binder.md",
+      "bugType": "LINTING",
+      "lineNumber": 11,
+      "commitMessage": "fix(agent): remediation iteration 1",
+      "status": "passed"
+    }
+  ],
+  "timeline": [
+    {
+      "iteration": 1,
+      "result": "passed",
+      "timestamp": "2026-02-19T14:31:39.770Z",
+      "retryCount": 1,
+      "retryLimit": 5
+    }
+  ],
+  "baseScore": 100,
+  "speedBonus": 10,
+  "efficiencyPenalty": 0,
+  "repoUrl": "https://github.com/microsoft/TypeScript-Compiler-Notes",
+  "generatedBranchName": "MICROSOFT_TIM_COOK_AI_Fix",
+  "analysisSummary": {
+    "totalFiles": 15,
+    "dominantLanguage": "Other",
+    "samplePaths": [
+      "repo/codebase/src/compiler/binder.md",
+      "repo/codebase/src/compiler/checker-inference.md",
+      "repo/codebase/src/compiler/checker-relations.md",
+      "repo/codebase/src/compiler/checker-widening-narrowing.md",
+      "repo/codebase/src/compiler/checker.md",
+      "repo/codebase/src/compiler/emitter.md",
+      "repo/codebase/src/compiler/faq.md",
+      "repo/codebase/src/compiler/parser.md"
+    ]
+  }
+}

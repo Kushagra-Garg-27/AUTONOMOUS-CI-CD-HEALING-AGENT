@@ -1,0 +1,58 @@
+{
+  "executionTime": 12,
+  "ciStatus": "passed",
+  "failuresCount": 0,
+  "fixesCount": 2,
+  "commitCount": 2,
+  "fixesTable": [
+    {
+      "filePath": "repo/examples/mvc/lib/boot.js",
+      "bugType": "LINTING",
+      "lineNumber": 11,
+      "commitMessage": "fix(agent): remediation iteration 1",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/lib/application.js",
+      "bugType": "TYPE_ERROR",
+      "lineNumber": 12,
+      "commitMessage": "fix(agent): remediation iteration 2",
+      "status": "passed"
+    }
+  ],
+  "timeline": [
+    {
+      "iteration": 1,
+      "result": "failed",
+      "timestamp": "2026-02-19T13:22:09.571Z",
+      "retryCount": 1,
+      "retryLimit": 5
+    },
+    {
+      "iteration": 2,
+      "result": "passed",
+      "timestamp": "2026-02-19T13:22:10.571Z",
+      "retryCount": 2,
+      "retryLimit": 5
+    }
+  ],
+  "baseScore": 100,
+  "speedBonus": 10,
+  "efficiencyPenalty": 0,
+  "repoUrl": "https://github.com/expressjs/express",
+  "generatedBranchName": "DEMOTEAM_TANISHA_AI_Fix",
+  "analysisSummary": {
+    "totalFiles": 141,
+    "dominantLanguage": "JavaScript",
+    "samplePaths": [
+      "repo/examples/mvc/lib/boot.js",
+      "repo/lib/application.js",
+      "repo/lib/express.js",
+      "repo/lib/request.js",
+      "repo/lib/response.js",
+      "repo/lib/utils.js",
+      "repo/lib/view.js",
+      "repo/examples/auth/index.js"
+    ]
+  }
+}

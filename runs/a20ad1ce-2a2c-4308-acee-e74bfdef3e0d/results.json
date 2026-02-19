@@ -1,0 +1,58 @@
+{
+  "executionTime": 23,
+  "ciStatus": "passed",
+  "failuresCount": 0,
+  "fixesCount": 2,
+  "commitCount": 2,
+  "fixesTable": [
+    {
+      "filePath": "repo/.git/config",
+      "bugType": "LINTING",
+      "lineNumber": 11,
+      "commitMessage": "fix(agent): remediation iteration 1",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/.git/logs/HEAD",
+      "bugType": "TYPE_ERROR",
+      "lineNumber": 12,
+      "commitMessage": "fix(agent): remediation iteration 2",
+      "status": "passed"
+    }
+  ],
+  "timeline": [
+    {
+      "iteration": 1,
+      "result": "failed",
+      "timestamp": "2026-02-19T12:35:09.143Z",
+      "retryCount": 1,
+      "retryLimit": 5
+    },
+    {
+      "iteration": 2,
+      "result": "passed",
+      "timestamp": "2026-02-19T12:35:10.143Z",
+      "retryCount": 2,
+      "retryLimit": 5
+    }
+  ],
+  "baseScore": 76,
+  "speedBonus": 15,
+  "efficiencyPenalty": 0,
+  "repoUrl": "https://github.com/Kushagra-2705/alumni-connect",
+  "generatedBranchName": "GENZPT_KUSHAGRA_GARG_AI_Fix",
+  "analysisSummary": {
+    "totalFiles": 126,
+    "dominantLanguage": "TypeScript",
+    "samplePaths": [
+      "repo/.git/config",
+      "repo/.git/logs/HEAD",
+      "repo/.git/index",
+      "repo/.git/HEAD",
+      "repo/.git/shallow",
+      "repo/.git/info/exclude",
+      "repo/.git/objects/pack/pack-ca19ea73a37e1cbc0b5638f3138310527b53b722.pack",
+      "repo/.git/objects/pack/pack-ca19ea73a37e1cbc0b5638f3138310527b53b722.idx"
+    ]
+  }
+}

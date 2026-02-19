@@ -1,0 +1,44 @@
+{
+  "executionTime": 73,
+  "ciStatus": "passed",
+  "failuresCount": 0,
+  "fixesCount": 1,
+  "commitCount": 1,
+  "fixesTable": [
+    {
+      "filePath": "repo/app/src/index.js",
+      "bugType": "LINTING",
+      "lineNumber": 11,
+      "commitMessage": "fix(agent): remediation iteration 1",
+      "status": "passed"
+    }
+  ],
+  "timeline": [
+    {
+      "iteration": 1,
+      "result": "passed",
+      "timestamp": "2026-02-19T15:51:39.515Z",
+      "retryCount": 1,
+      "retryLimit": 5
+    }
+  ],
+  "baseScore": 100,
+  "speedBonus": 10,
+  "efficiencyPenalty": 0,
+  "repoUrl": "https://github.com/docker/getting-started",
+  "generatedBranchName": "HEROES_KUSH_AI_Fix",
+  "analysisSummary": {
+    "totalFiles": 35,
+    "dominantLanguage": "Other",
+    "samplePaths": [
+      "repo/app/src/index.js",
+      "repo/app/src/persistence/index.js",
+      "repo/app/src/persistence/mysql.js",
+      "repo/app/src/persistence/sqlite.js",
+      "repo/app/src/routes/addItem.js",
+      "repo/app/src/routes/deleteItem.js",
+      "repo/app/src/routes/getItems.js",
+      "repo/app/src/routes/updateItem.js"
+    ]
+  }
+}

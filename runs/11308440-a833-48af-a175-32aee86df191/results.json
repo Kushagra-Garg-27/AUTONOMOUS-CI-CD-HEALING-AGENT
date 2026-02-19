@@ -1,0 +1,44 @@
+{
+  "executionTime": 40,
+  "ciStatus": "passed",
+  "failuresCount": 0,
+  "fixesCount": 1,
+  "commitCount": 1,
+  "fixesTable": [
+    {
+      "filePath": "repo/backend/services/audit.py",
+      "bugType": "LINTING",
+      "lineNumber": 11,
+      "commitMessage": "fix(agent): remediation iteration 1",
+      "status": "passed"
+    }
+  ],
+  "timeline": [
+    {
+      "iteration": 1,
+      "result": "passed",
+      "timestamp": "2026-02-19T18:33:46.719Z",
+      "retryCount": 1,
+      "retryLimit": 5
+    }
+  ],
+  "baseScore": 100,
+  "speedBonus": 10,
+  "efficiencyPenalty": 0,
+  "repoUrl": "https://github.com/Kushagra-Garg-27/SARaansh",
+  "generatedBranchName": "GENZFUCKERS_TMKC_AI_Fix",
+  "analysisSummary": {
+    "totalFiles": 22,
+    "dominantLanguage": "TypeScript",
+    "samplePaths": [
+      "repo/backend/services/audit.py",
+      "repo/backend/services/cases.py",
+      "repo/backend/services/dashboard.py",
+      "repo/backend/services/reports.py",
+      "repo/App.tsx",
+      "repo/backend/db.py",
+      "repo/backend/main.py",
+      "repo/backend/models.py"
+    ]
+  }
+}

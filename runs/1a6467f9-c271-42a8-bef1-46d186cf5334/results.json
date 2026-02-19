@@ -1,0 +1,44 @@
+{
+  "executionTime": 90,
+  "ciStatus": "passed",
+  "failuresCount": 0,
+  "fixesCount": 1,
+  "commitCount": 1,
+  "fixesTable": [
+    {
+      "filePath": "repo/benchmark/index.ts",
+      "bugType": "LINTING",
+      "lineNumber": 11,
+      "commitMessage": "fix(agent): remediation iteration 1",
+      "status": "passed"
+    }
+  ],
+  "timeline": [
+    {
+      "iteration": 1,
+      "result": "passed",
+      "timestamp": "2026-02-19T14:34:17.841Z",
+      "retryCount": 1,
+      "retryLimit": 5
+    }
+  ],
+  "baseScore": 100,
+  "speedBonus": 10,
+  "efficiencyPenalty": 0,
+  "repoUrl": "https://github.com/sindresorhus/got",
+  "generatedBranchName": "SINDRESORHUS_GOT_YOU_AI_Fix",
+  "analysisSummary": {
+    "totalFiles": 79,
+    "dominantLanguage": "TypeScript",
+    "samplePaths": [
+      "repo/benchmark/index.ts",
+      "repo/benchmark/server.ts",
+      "repo/documentation/examples/advanced-creation.js",
+      "repo/documentation/examples/gh-got.js",
+      "repo/documentation/examples/h2c.js",
+      "repo/documentation/examples/pagination.js",
+      "repo/documentation/examples/runkit-example.js",
+      "repo/documentation/examples/uppercase-headers.js"
+    ]
+  }
+}

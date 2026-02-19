@@ -1,0 +1,44 @@
+{
+  "executionTime": 12,
+  "ciStatus": "passed",
+  "failuresCount": 0,
+  "fixesCount": 1,
+  "commitCount": 1,
+  "fixesTable": [
+    {
+      "filePath": "repo/lib/index.js",
+      "bugType": "LINTING",
+      "lineNumber": 11,
+      "commitMessage": "fix(agent): remediation iteration 1",
+      "status": "passed"
+    }
+  ],
+  "timeline": [
+    {
+      "iteration": 1,
+      "result": "passed",
+      "timestamp": "2026-02-19T14:28:50.374Z",
+      "retryCount": 1,
+      "retryLimit": 5
+    }
+  ],
+  "baseScore": 100,
+  "speedBonus": 10,
+  "efficiencyPenalty": 0,
+  "repoUrl": "https://github.com/eslint/eslint-visitor-keys",
+  "generatedBranchName": "HALOGEN_I_DONT_KNOW_AI_Fix",
+  "analysisSummary": {
+    "totalFiles": 22,
+    "dominantLanguage": "TypeScript",
+    "samplePaths": [
+      "repo/lib/index.js",
+      "repo/lib/visitor-keys.js",
+      "repo/tests/lib/commonjs.cjs",
+      "repo/tests/lib/fixtures/bad-extends-type-reference.d.ts",
+      "repo/tests/lib/fixtures/bad-type-parameters.d.ts",
+      "repo/tests/lib/fixtures/bad-type-reference.d.ts",
+      "repo/tests/lib/fixtures/bad-type-value.d.ts",
+      "repo/tests/lib/fixtures/bad-type.d.ts"
+    ]
+  }
+}

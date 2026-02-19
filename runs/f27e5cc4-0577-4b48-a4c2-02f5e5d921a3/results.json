@@ -1,0 +1,19 @@
+{
+  "executionTime": 11,
+  "ciStatus": "passed",
+  "failuresCount": 0,
+  "fixesCount": 0,
+  "commitCount": 0,
+  "fixesTable": [],
+  "timeline": [],
+  "baseScore": 100,
+  "speedBonus": 10,
+  "efficiencyPenalty": 0,
+  "repoUrl": "https://github.com/octocat/Hello-World",
+  "generatedBranchName": "DEMOTEAM_TANISHA_AI_Fix",
+  "analysisSummary": {
+    "totalFiles": 0,
+    "dominantLanguage": "Unknown",
+    "samplePaths": []
+  }
+}

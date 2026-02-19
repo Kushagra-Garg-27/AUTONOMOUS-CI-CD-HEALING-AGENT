@@ -1,0 +1,23 @@
+{
+  "executionTime": 0,
+  "ciStatus": "failed",
+  "failuresCount": 1,
+  "fixesCount": 0,
+  "commitCount": 0,
+  "fixesTable": [],
+  "timeline": [
+    {
+      "iteration": 1,
+      "result": "failed",
+      "timestamp": "2026-02-19T14:20:53.923Z",
+      "retryCount": 1,
+      "retryLimit": 5
+    }
+  ],
+  "baseScore": 100,
+  "speedBonus": 0,
+  "efficiencyPenalty": 0,
+  "repoUrl": "https://github.com/visionmedia/mocha-examples",
+  "generatedBranchName": "HALOGEN_MOCHA_AI_Fix",
+  "error": "Sandbox execution failed. Ensure Docker is installed and running. Command failed: docker run --rm alpine:3.20 sh -lc set -e && apk add --no-cache git >/dev/null && git clone --depth 1 \"https://github.com/visionmedia/mocha-examples\" repo >/dev/null 2>&1 && find repo -type f ! -path '*/.git/*' ! -path '*/.github/*' ! -path '*/node_modules/*' ! -path '*/vendor/*' ! -path '*/dist/*' ! -path '*/build/*' ! -path '*/out/*' ! -path '*/coverage/*' ! -path '*/.next/*' ! -path '*/.turbo/*' ! -path '*/.cache/*' ! -path '*/.vscode/*' ! -name '*.lock' ! -name '*.log' ! -name '*.tmp' ! -name '*.cache' ! -name '*.min.js' ! -name '*.map' -print | sort | head -n 2000\n"
+}

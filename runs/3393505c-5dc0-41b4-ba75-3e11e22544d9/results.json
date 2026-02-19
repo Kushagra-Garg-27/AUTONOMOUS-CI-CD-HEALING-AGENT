@@ -1,0 +1,58 @@
+{
+  "executionTime": 19,
+  "ciStatus": "passed",
+  "failuresCount": 0,
+  "fixesCount": 2,
+  "commitCount": 2,
+  "fixesTable": [
+    {
+      "filePath": "repo/src/App.css",
+      "bugType": "LINTING",
+      "lineNumber": 11,
+      "commitMessage": "fix(agent): remediation iteration 1",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/src/App.tsx",
+      "bugType": "TYPE_ERROR",
+      "lineNumber": 12,
+      "commitMessage": "fix(agent): remediation iteration 2",
+      "status": "passed"
+    }
+  ],
+  "timeline": [
+    {
+      "iteration": 1,
+      "result": "failed",
+      "timestamp": "2026-02-19T18:24:13.976Z",
+      "retryCount": 1,
+      "retryLimit": 5
+    },
+    {
+      "iteration": 2,
+      "result": "passed",
+      "timestamp": "2026-02-19T18:24:14.976Z",
+      "retryCount": 2,
+      "retryLimit": 5
+    }
+  ],
+  "baseScore": 100,
+  "speedBonus": 10,
+  "efficiencyPenalty": 0,
+  "repoUrl": "https://github.com/Kushagra-2705/alumni-connect",
+  "generatedBranchName": "GENZPT_KUSHAGRA_AI_Fix",
+  "analysisSummary": {
+    "totalFiles": 85,
+    "dominantLanguage": "TypeScript",
+    "samplePaths": [
+      "repo/src/App.css",
+      "repo/src/App.tsx",
+      "repo/src/components/landing/CTASection.tsx",
+      "repo/src/components/landing/FeatureCard.tsx",
+      "repo/src/components/landing/Features.tsx",
+      "repo/src/components/landing/Footer.tsx",
+      "repo/src/components/landing/Hero.tsx",
+      "repo/src/components/landing/HowItWorks.tsx"
+    ]
+  }
+}

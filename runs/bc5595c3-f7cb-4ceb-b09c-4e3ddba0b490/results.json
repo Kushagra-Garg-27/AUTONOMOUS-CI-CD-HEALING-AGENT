@@ -1,0 +1,27 @@
+{
+  "executionTime": 13,
+  "ciStatus": "passed",
+  "failuresCount": 0,
+  "fixesCount": 0,
+  "commitCount": 0,
+  "fixesTable": [],
+  "timeline": [
+    {
+      "iteration": 1,
+      "result": "passed",
+      "timestamp": "2026-02-19T13:20:04.541Z",
+      "retryCount": 1,
+      "retryLimit": 5
+    }
+  ],
+  "baseScore": 100,
+  "speedBonus": 10,
+  "efficiencyPenalty": 0,
+  "repoUrl": "https://github.com/expressjs/express",
+  "generatedBranchName": "DEMOTEAM_TANISHA_AI_Fix",
+  "analysisSummary": {
+    "totalFiles": 0,
+    "dominantLanguage": "Unknown",
+    "samplePaths": []
+  }
+}

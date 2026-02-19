@@ -1,0 +1,44 @@
+{
+  "executionTime": 11,
+  "ciStatus": "passed",
+  "failuresCount": 0,
+  "fixesCount": 1,
+  "commitCount": 1,
+  "fixesTable": [
+    {
+      "filePath": "repo/packages/eslint-config-airbnb-base/.babelrc",
+      "bugType": "LINTING",
+      "lineNumber": 11,
+      "commitMessage": "fix(agent): remediation iteration 1",
+      "status": "passed"
+    }
+  ],
+  "timeline": [
+    {
+      "iteration": 1,
+      "result": "passed",
+      "timestamp": "2026-02-19T14:30:06.990Z",
+      "retryCount": 1,
+      "retryLimit": 5
+    }
+  ],
+  "baseScore": 100,
+  "speedBonus": 10,
+  "efficiencyPenalty": 0,
+  "repoUrl": "https://github.com/airbnb/javascript",
+  "generatedBranchName": "AIRBNB_AIRLANCE_AI_Fix",
+  "analysisSummary": {
+    "totalFiles": 42,
+    "dominantLanguage": "JavaScript",
+    "samplePaths": [
+      "repo/packages/eslint-config-airbnb-base/.babelrc",
+      "repo/packages/eslint-config-airbnb-base/.eslintrc",
+      "repo/packages/eslint-config-airbnb-base/CHANGELOG.md",
+      "repo/packages/eslint-config-airbnb-base/index.js",
+      "repo/packages/eslint-config-airbnb-base/legacy.js",
+      "repo/packages/eslint-config-airbnb-base/LICENSE.md",
+      "repo/packages/eslint-config-airbnb-base/package.json",
+      "repo/packages/eslint-config-airbnb-base/README.md"
+    ]
+  }
+}

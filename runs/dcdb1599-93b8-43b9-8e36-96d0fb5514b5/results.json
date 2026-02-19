@@ -1,0 +1,23 @@
+{
+  "executionTime": 0,
+  "ciStatus": "failed",
+  "failuresCount": 1,
+  "fixesCount": 0,
+  "commitCount": 0,
+  "fixesTable": [],
+  "timeline": [
+    {
+      "iteration": 1,
+      "result": "failed",
+      "timestamp": "2026-02-19T11:06:50.240Z",
+      "retryCount": 1,
+      "retryLimit": 5
+    }
+  ],
+  "baseScore": 0,
+  "speedBonus": 0,
+  "efficiencyPenalty": 0,
+  "repoUrl": "https://github.com/Kushagra-2705/alumni-connect",
+  "generatedBranchName": "GENZPT_KUSHAGRA_GARG_AI_Fix",
+  "error": "Sandbox execution failed. Ensure Docker is installed and running. spawn docker ENOENT"
+}
