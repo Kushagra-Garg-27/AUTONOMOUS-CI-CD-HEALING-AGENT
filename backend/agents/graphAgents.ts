@@ -7,6 +7,7 @@ import type { AgentGraphState, FixRow, RunResult, TimelineEntry } from '../types
 export const AGENT_PIPELINE = ['planner', 'analyzer', 'remediator', 'scorer'] as const;
 
 const AgentState = Annotation.Root({
+  runId: Annotation<string>,
   repoUrl: Annotation<string>,
   teamName: Annotation<string>,
   leaderName: Annotation<string>,
@@ -37,7 +38,12 @@ const plannerAgent = async (state: AgentGraphState): Promise<Partial<AgentGraphS
 });
 
 const analyzerAgent = async (state: AgentGraphState): Promise<Partial<AgentGraphState>> => {
-  const analysisSummary = await analyzeRepositoryInDocker(state.repoUrl);
+  const analysisSummary = await analyzeRepositoryInDocker({
+    runId: state.runId,
+    repoUrl: state.repoUrl,
+    teamName: state.teamName,
+    leaderName: state.leaderName,
+  });
   return { analysisSummary };
 };
 
@@ -141,6 +147,7 @@ const graph = new StateGraph(AgentState)
   .compile();
 
 export const runAgentGraph = async (input: {
+  runId: string;
   repoUrl: string;
   teamName: string;
   leaderName: string;
@@ -149,6 +156,7 @@ export const runAgentGraph = async (input: {
   const startedAtMs = Date.now();
 
   const finalState = await graph.invoke({
+    runId: input.runId,
     repoUrl: input.repoUrl,
     teamName: input.teamName,
     leaderName: input.leaderName,

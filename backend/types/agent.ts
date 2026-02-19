@@ -63,6 +63,7 @@ export interface RunRecord {
 }
 
 export interface AgentGraphState {
+  runId: string;
   repoUrl: string;
   teamName: string;
   leaderName: string;

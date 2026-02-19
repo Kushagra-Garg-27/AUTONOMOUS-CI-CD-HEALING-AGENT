@@ -76,7 +76,7 @@ app.post('/api/agent/runs', async (req, res) => {
   runStore.set(runId, runRecord);
 
   try {
-    const result = await runAgentGraph({ repoUrl, teamName, leaderName, retryLimit });
+    const result = await runAgentGraph({ runId, repoUrl, teamName, leaderName, retryLimit });
 
     const completedRecord: RunRecord = {
       ...runRecord,
