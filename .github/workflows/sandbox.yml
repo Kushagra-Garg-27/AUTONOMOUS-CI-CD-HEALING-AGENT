@@ -20,24 +20,12 @@ jobs:
           docker --version
           docker run --rm alpine echo "Sandbox executed successfully"
 
-      - name: Send result back
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const payload = context.payload.client_payload;
-
-            if (!payload) {
-              core.setFailed("No client_payload found in dispatch event");
-              return;
-            }
-
-            await github.rest.repos.createDispatchEvent({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              event_type: "sandbox-complete",
-              client_payload: {
-                runId: payload.runId,
-                status: "completed",
-                message: "Docker executed successfully"
-              }
-            });
+      - name: Send result back to backend
+        run: |
+          curl -X POST https://autonomous-ci-cd-healing-agent.onrender.com/api/sandbox/callback \
+            -H "Content-Type: application/json" \
+            -d '{
+              "runId": "${{ github.event.client_payload.runId }}",
+              "status": "completed",
+              "message": "Docker executed successfully"
+            }'
