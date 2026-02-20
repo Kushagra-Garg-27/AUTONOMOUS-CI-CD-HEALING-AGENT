@@ -1,0 +1,374 @@
+{
+  "executionTime": 2,
+  "ciStatus": "passed",
+  "failuresCount": 0,
+  "fixesCount": 10,
+  "commitCount": 10,
+  "fixesTable": [
+    {
+      "filePath": "repo/gulpfile.js",
+      "bugType": "LOGIC",
+      "lineNumber": 9,
+      "commitMessage": "remove debug statement and finalize implementation",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/index.d.ts",
+      "bugType": "TYPE_ERROR",
+      "lineNumber": 36,
+      "commitMessage": "replace any with a concrete type",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/test/unit/adapters/fetch.js",
+      "bugType": "LOGIC",
+      "lineNumber": 165,
+      "commitMessage": "remove debug statement and finalize implementation",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/test/unit/adapters/http.js",
+      "bugType": "LOGIC",
+      "lineNumber": 1059,
+      "commitMessage": "remove debug statement and finalize implementation",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/test/module/test.js",
+      "bugType": "IMPORT",
+      "lineNumber": 2,
+      "commitMessage": "remove the import statement",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/test/module/test.js",
+      "bugType": "LOGIC",
+      "lineNumber": 36,
+      "commitMessage": "remove debug statement and finalize implementation",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/test/module/typings/esm/index.ts",
+      "bugType": "TYPE_ERROR",
+      "lineNumber": 31,
+      "commitMessage": "replace any with a concrete type",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/test/module/typings/esm/index.ts",
+      "bugType": "LOGIC",
+      "lineNumber": 72,
+      "commitMessage": "remove debug statement and finalize implementation",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/test/module/typings/cjs/index.ts",
+      "bugType": "TYPE_ERROR",
+      "lineNumber": 8,
+      "commitMessage": "replace any with a concrete type",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/test/module/typings/cjs/index.ts",
+      "bugType": "LOGIC",
+      "lineNumber": 50,
+      "commitMessage": "remove debug statement and finalize implementation",
+      "status": "passed"
+    }
+  ],
+  "timeline": [
+    {
+      "iteration": 1,
+      "result": "failed",
+      "timestamp": "2026-02-20T09:02:04.033Z",
+      "retryCount": 1,
+      "retryLimit": 5
+    },
+    {
+      "iteration": 2,
+      "result": "failed",
+      "timestamp": "2026-02-20T09:02:05.033Z",
+      "retryCount": 2,
+      "retryLimit": 5
+    },
+    {
+      "iteration": 3,
+      "result": "failed",
+      "timestamp": "2026-02-20T09:02:06.033Z",
+      "retryCount": 3,
+      "retryLimit": 5
+    },
+    {
+      "iteration": 4,
+      "result": "passed",
+      "timestamp": "2026-02-20T09:02:07.033Z",
+      "retryCount": 4,
+      "retryLimit": 5
+    }
+  ],
+  "baseScore": 100,
+  "speedBonus": 10,
+  "efficiencyPenalty": 0,
+  "repoUrl": "https://github.com/axios/axios",
+  "generatedBranchName": "TEAMB_TANISHA_AI_Fix",
+  "analysisSummary": {
+    "totalFiles": 171,
+    "dominantLanguage": "JavaScript",
+    "samplePaths": [
+      "repo/gulpfile.js",
+      "repo/index.d.ts",
+      "repo/index.js",
+      "repo/rollup.config.js",
+      "repo/webpack.config.js",
+      "repo/test/unit/utils/utils.js",
+      "repo/test/unit/regression/bugs.js",
+      "repo/test/unit/regression/SNYK-JS-AXIOS-1038255.js",
+      "repo/test/unit/regression/SNYK-JS-AXIOS-7361793.js",
+      "repo/test/unit/platform/index.js",
+      "repo/test/unit/helpers/composeSignals.js",
+      "repo/test/unit/helpers/estimateDataURLDecodedBytes.spec.js",
+      "repo/test/unit/helpers/fromDataURI.js",
+      "repo/test/unit/helpers/parseProtocol.js",
+      "repo/test/unit/helpers/toFormData.js",
+      "repo/test/unit/defaults/transformResponse.js",
+      "repo/test/unit/core/Axios.js",
+      "repo/test/unit/core/AxiosHeaders.js",
+      "repo/test/unit/core/prototypePollution.js",
+      "repo/test/unit/adapters/adapters.js",
+      "repo/test/unit/adapters/error-details.spec.js",
+      "repo/test/unit/adapters/fetch.js",
+      "repo/test/unit/adapters/http.js",
+      "repo/test/specs/adapter.spec.js",
+      "repo/test/specs/api.spec.js",
+      "repo/test/specs/basicAuth.spec.js",
+      "repo/test/specs/cancel.spec.js",
+      "repo/test/specs/defaults.spec.js",
+      "repo/test/specs/formdata.spec.js",
+      "repo/test/specs/headers.spec.js",
+      "repo/test/specs/instance.spec.js",
+      "repo/test/specs/interceptors.spec.js",
+      "repo/test/specs/options.spec.js",
+      "repo/test/specs/progress.spec.js",
+      "repo/test/specs/promise.spec.js",
+      "repo/test/specs/requests.spec.js",
+      "repo/test/specs/transform.spec.js",
+      "repo/test/specs/xsrf.spec.js",
+      "repo/test/specs/__helpers.js",
+      "repo/test/specs/utils/endsWith.js",
+      "repo/test/specs/utils/extend.spec.js",
+      "repo/test/specs/utils/forEach.spec.js",
+      "repo/test/specs/utils/isX.spec.js",
+      "repo/test/specs/utils/kindOf.js",
+      "repo/test/specs/utils/kindOfTest.js",
+      "repo/test/specs/utils/merge.spec.js",
+      "repo/test/specs/utils/toArray.js",
+      "repo/test/specs/utils/toFlatObject.js"
+    ],
+    "detectedIssues": [
+      {
+        "filePath": "repo/gulpfile.js",
+        "bugType": "LOGIC",
+        "lineNumber": 9,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/index.d.ts",
+        "bugType": "TYPE_ERROR",
+        "lineNumber": 36,
+        "fixSuggestion": "replace any with a concrete type"
+      },
+      {
+        "filePath": "repo/test/unit/adapters/fetch.js",
+        "bugType": "LOGIC",
+        "lineNumber": 165,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/test/unit/adapters/http.js",
+        "bugType": "LOGIC",
+        "lineNumber": 1059,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/test/module/test.js",
+        "bugType": "IMPORT",
+        "lineNumber": 2,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/test/module/test.js",
+        "bugType": "LOGIC",
+        "lineNumber": 36,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/test/module/typings/esm/index.ts",
+        "bugType": "TYPE_ERROR",
+        "lineNumber": 31,
+        "fixSuggestion": "replace any with a concrete type"
+      },
+      {
+        "filePath": "repo/test/module/typings/esm/index.ts",
+        "bugType": "LOGIC",
+        "lineNumber": 72,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/test/module/typings/cjs/index.ts",
+        "bugType": "TYPE_ERROR",
+        "lineNumber": 8,
+        "fixSuggestion": "replace any with a concrete type"
+      },
+      {
+        "filePath": "repo/test/module/typings/cjs/index.ts",
+        "bugType": "LOGIC",
+        "lineNumber": 50,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/test/module/esm/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 16,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/test/module/cjs/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 11,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/test/helpers/server.js",
+        "bugType": "LOGIC",
+        "lineNumber": 59,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/sandbox/client.js",
+        "bugType": "LOGIC",
+        "lineNumber": 10,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/sandbox/server.js",
+        "bugType": "LOGIC",
+        "lineNumber": 82,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/lib/utils.js",
+        "bugType": "LOGIC",
+        "lineNumber": 364,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/lib/platform/index.js",
+        "bugType": "IMPORT",
+        "lineNumber": 2,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/lib/core/AxiosError.js",
+        "bugType": "LINTING",
+        "lineNumber": 33,
+        "fixSuggestion": "remove trailing whitespace"
+      },
+      {
+        "filePath": "repo/lib/adapters/adapters.js",
+        "bugType": "IMPORT",
+        "lineNumber": 4,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/examples/server.js",
+        "bugType": "LOGIC",
+        "lineNumber": 193,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/upload/server.js",
+        "bugType": "LOGIC",
+        "lineNumber": 9,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/postMultipartFormData/server.js",
+        "bugType": "LOGIC",
+        "lineNumber": 5,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/post/server.js",
+        "bugType": "LOGIC",
+        "lineNumber": 9,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/bin/check-build-version.js",
+        "bugType": "LOGIC",
+        "lineNumber": 8,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/bin/contributors.js",
+        "bugType": "LOGIC",
+        "lineNumber": 27,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/bin/githubAxios.js",
+        "bugType": "LOGIC",
+        "lineNumber": 6,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/bin/injectContributorsList.js",
+        "bugType": "LOGIC",
+        "lineNumber": 14,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/bin/pr.js",
+        "bugType": "LOGIC",
+        "lineNumber": 132,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/bin/RepoBot.js",
+        "bugType": "LOGIC",
+        "lineNumber": 83,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/bin/resolveNPMTag.js",
+        "bugType": "LOGIC",
+        "lineNumber": 16,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/bin/run-karma-tests.js",
+        "bugType": "LOGIC",
+        "lineNumber": 8,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/bin/sponsors.js",
+        "bugType": "LOGIC",
+        "lineNumber": 44,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/bin/ssl_hotfix.js",
+        "bugType": "LOGIC",
+        "lineNumber": 5,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/bin/actions/notify_published.js",
+        "bugType": "LOGIC",
+        "lineNumber": 6,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      }
+    ]
+  }
+}

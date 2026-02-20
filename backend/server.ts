@@ -116,6 +116,7 @@ app.post('/api/agent/runs', async (req, res) => {
         totalFiles: 0,
         dominantLanguage: 'Unknown',
         samplePaths: [],
+        detectedIssues: [],
       },
     };
 

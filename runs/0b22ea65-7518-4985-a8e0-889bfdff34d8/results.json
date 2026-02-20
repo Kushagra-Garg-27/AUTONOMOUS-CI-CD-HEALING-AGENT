@@ -1,35 +1,42 @@
 {
-  "executionTime": 1,
+  "executionTime": 2,
   "ciStatus": "passed",
   "failuresCount": 0,
-  "fixesCount": 4,
-  "commitCount": 4,
+  "fixesCount": 5,
+  "commitCount": 5,
   "fixesTable": [
     {
-      "filePath": "repo/src/hooks/use-chat-sessions.ts",
+      "filePath": "repo/framewire.js",
+      "bugType": "LOGIC",
+      "lineNumber": 14,
+      "commitMessage": "remove debug statement and finalize implementation",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/vite-error-overlay-plugin.js",
+      "bugType": "LOGIC",
+      "lineNumber": 145,
+      "commitMessage": "remove debug statement and finalize implementation",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/vitest.setup.ts",
       "bugType": "LINTING",
-      "lineNumber": 60,
+      "lineNumber": 25,
       "commitMessage": "remove trailing whitespace",
       "status": "passed"
     },
     {
-      "filePath": "repo/src/hooks/use-mobile.tsx",
-      "bugType": "IMPORT",
-      "lineNumber": 1,
-      "commitMessage": "remove the import statement",
-      "status": "passed"
-    },
-    {
-      "filePath": "repo/src/hooks/use-toast.ts",
+      "filePath": "repo/src/hooks/use-toast.tsx",
       "bugType": "IMPORT",
       "lineNumber": 4,
       "commitMessage": "remove the import statement",
       "status": "passed"
     },
     {
-      "filePath": "repo/src/components/icons.tsx",
+      "filePath": "repo/src/entities/index.ts",
       "bugType": "LINTING",
-      "lineNumber": 20,
+      "lineNumber": 3,
       "commitMessage": "remove trailing whitespace",
       "status": "passed"
     }
@@ -38,14 +45,14 @@
     {
       "iteration": 1,
       "result": "failed",
-      "timestamp": "2026-02-20T09:04:50.041Z",
+      "timestamp": "2026-02-20T09:03:36.751Z",
       "retryCount": 1,
       "retryLimit": 5
     },
     {
       "iteration": 2,
       "result": "passed",
-      "timestamp": "2026-02-20T09:04:51.041Z",
+      "timestamp": "2026-02-20T09:03:37.751Z",
       "retryCount": 2,
       "retryLimit": 5
     }
@@ -53,96 +60,114 @@
   "baseScore": 100,
   "speedBonus": 10,
   "efficiencyPenalty": 0,
-  "repoUrl": "https://github.com/Kushagra-Garg-27/Research-chatbot-assistant---AI-POWERED-ASSISTANT",
+  "repoUrl": "https://github.com/Kushagra-2705/linkhubgenerator",
   "generatedBranchName": "GENZPT_TANISHA_AI_Fix",
   "analysisSummary": {
-    "totalFiles": 59,
+    "totalFiles": 84,
     "dominantLanguage": "TypeScript",
     "samplePaths": [
-      "repo/next.config.ts",
-      "repo/postcss.config.js",
-      "repo/tailwind.config.js",
-      "repo/src/lib/placeholder-images.ts",
-      "repo/src/lib/types.ts",
+      "repo/eslint.config.ts",
+      "repo/framewire.js",
+      "repo/vite-error-overlay-plugin.js",
+      "repo/vitest.config.ts",
+      "repo/vitest.setup.ts",
+      "repo/src/env.d.ts",
+      "repo/src/lib/scroll-to-top.tsx",
       "repo/src/lib/utils.ts",
-      "repo/src/hooks/use-chat-sessions.ts",
-      "repo/src/hooks/use-mobile.tsx",
-      "repo/src/hooks/use-toast.ts",
-      "repo/src/components/icons.tsx",
+      "repo/src/hooks/use-size.ts",
+      "repo/src/hooks/use-toast.tsx",
+      "repo/src/entities/hubanalytics.d.ts",
+      "repo/src/entities/hublinks.d.ts",
+      "repo/src/entities/index.ts",
+      "repo/src/entities/linkhubs.d.ts",
+      "repo/src/entities/userprofiles.d.ts",
+      "repo/src/components/Footer.tsx",
+      "repo/src/components/Head.tsx",
+      "repo/src/components/Header.tsx",
+      "repo/src/components/Router.tsx",
       "repo/src/components/ui/accordion.tsx",
       "repo/src/components/ui/alert-dialog.tsx",
       "repo/src/components/ui/alert.tsx",
+      "repo/src/components/ui/aspect-ratio.tsx",
       "repo/src/components/ui/avatar.tsx",
       "repo/src/components/ui/badge.tsx",
       "repo/src/components/ui/button.tsx",
       "repo/src/components/ui/calendar.tsx",
       "repo/src/components/ui/card.tsx",
-      "repo/src/components/ui/carousel.tsx",
-      "repo/src/components/ui/chart.tsx",
       "repo/src/components/ui/checkbox.tsx",
       "repo/src/components/ui/collapsible.tsx",
+      "repo/src/components/ui/command.tsx",
+      "repo/src/components/ui/context-menu.tsx",
       "repo/src/components/ui/dialog.tsx",
       "repo/src/components/ui/dropdown-menu.tsx",
       "repo/src/components/ui/form.tsx",
+      "repo/src/components/ui/hover-card.tsx",
+      "repo/src/components/ui/image.tsx",
       "repo/src/components/ui/input.tsx",
       "repo/src/components/ui/label.tsx",
+      "repo/src/components/ui/loading-spinner.tsx",
+      "repo/src/components/ui/member-protected-route.tsx",
       "repo/src/components/ui/menubar.tsx",
+      "repo/src/components/ui/navigation-menu.tsx",
       "repo/src/components/ui/popover.tsx",
       "repo/src/components/ui/progress.tsx",
       "repo/src/components/ui/radio-group.tsx",
       "repo/src/components/ui/scroll-area.tsx",
-      "repo/src/components/ui/select.tsx",
-      "repo/src/components/ui/separator.tsx",
-      "repo/src/components/ui/sheet.tsx",
-      "repo/src/components/ui/sidebar.tsx",
-      "repo/src/components/ui/skeleton.tsx",
-      "repo/src/components/ui/slider.tsx",
-      "repo/src/components/ui/switch.tsx",
-      "repo/src/components/ui/table.tsx",
-      "repo/src/components/ui/tabs.tsx",
-      "repo/src/components/ui/textarea.tsx",
-      "repo/src/components/ui/toast.tsx",
-      "repo/src/components/ui/toaster.tsx",
-      "repo/src/components/ui/tooltip.tsx",
-      "repo/src/components/chat/academic-answer.tsx",
-      "repo/src/components/chat/chat-input.tsx",
-      "repo/src/components/chat/chat-layout.tsx"
+      "repo/src/components/ui/select.tsx"
     ],
     "detectedIssues": [
       {
-        "filePath": "repo/src/hooks/use-chat-sessions.ts",
+        "filePath": "repo/framewire.js",
+        "bugType": "LOGIC",
+        "lineNumber": 14,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/vite-error-overlay-plugin.js",
+        "bugType": "LOGIC",
+        "lineNumber": 145,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/vitest.setup.ts",
         "bugType": "LINTING",
-        "lineNumber": 60,
+        "lineNumber": 25,
         "fixSuggestion": "remove trailing whitespace"
       },
       {
-        "filePath": "repo/src/hooks/use-mobile.tsx",
-        "bugType": "IMPORT",
-        "lineNumber": 1,
-        "fixSuggestion": "remove the import statement"
-      },
-      {
-        "filePath": "repo/src/hooks/use-toast.ts",
+        "filePath": "repo/src/hooks/use-toast.tsx",
         "bugType": "IMPORT",
         "lineNumber": 4,
         "fixSuggestion": "remove the import statement"
       },
       {
-        "filePath": "repo/src/components/icons.tsx",
+        "filePath": "repo/src/entities/index.ts",
         "bugType": "LINTING",
-        "lineNumber": 20,
+        "lineNumber": 3,
+        "fixSuggestion": "remove trailing whitespace"
+      },
+      {
+        "filePath": "repo/src/components/Footer.tsx",
+        "bugType": "LINTING",
+        "lineNumber": 18,
+        "fixSuggestion": "remove trailing whitespace"
+      },
+      {
+        "filePath": "repo/src/components/Header.tsx",
+        "bugType": "LINTING",
+        "lineNumber": 29,
         "fixSuggestion": "remove trailing whitespace"
       },
       {
         "filePath": "repo/src/components/ui/accordion.tsx",
         "bugType": "IMPORT",
-        "lineNumber": 3,
+        "lineNumber": 1,
         "fixSuggestion": "remove the import statement"
       },
       {
         "filePath": "repo/src/components/ui/alert-dialog.tsx",
         "bugType": "IMPORT",
-        "lineNumber": 3,
+        "lineNumber": 1,
         "fixSuggestion": "remove the import statement"
       },
       {
@@ -152,9 +177,15 @@
         "fixSuggestion": "remove the import statement"
       },
       {
+        "filePath": "repo/src/components/ui/aspect-ratio.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 1,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
         "filePath": "repo/src/components/ui/avatar.tsx",
         "bugType": "IMPORT",
-        "lineNumber": 3,
+        "lineNumber": 1,
         "fixSuggestion": "remove the import statement"
       },
       {
@@ -172,14 +203,8 @@
       {
         "filePath": "repo/src/components/ui/calendar.tsx",
         "bugType": "IMPORT",
-        "lineNumber": 3,
+        "lineNumber": 1,
         "fixSuggestion": "remove the import statement"
-      },
-      {
-        "filePath": "repo/src/components/ui/calendar.tsx",
-        "bugType": "TYPE_ERROR",
-        "lineNumber": 65,
-        "fixSuggestion": "replace any with a concrete type"
       },
       {
         "filePath": "repo/src/components/ui/card.tsx",
@@ -188,45 +213,51 @@
         "fixSuggestion": "remove the import statement"
       },
       {
-        "filePath": "repo/src/components/ui/carousel.tsx",
-        "bugType": "IMPORT",
-        "lineNumber": 3,
-        "fixSuggestion": "remove the import statement"
-      },
-      {
-        "filePath": "repo/src/components/ui/chart.tsx",
-        "bugType": "IMPORT",
-        "lineNumber": 3,
-        "fixSuggestion": "remove the import statement"
-      },
-      {
         "filePath": "repo/src/components/ui/checkbox.tsx",
         "bugType": "IMPORT",
-        "lineNumber": 3,
+        "lineNumber": 1,
         "fixSuggestion": "remove the import statement"
       },
       {
         "filePath": "repo/src/components/ui/collapsible.tsx",
         "bugType": "IMPORT",
-        "lineNumber": 3,
+        "lineNumber": 1,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/command.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 1,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/context-menu.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 1,
         "fixSuggestion": "remove the import statement"
       },
       {
         "filePath": "repo/src/components/ui/dialog.tsx",
         "bugType": "IMPORT",
-        "lineNumber": 3,
+        "lineNumber": 1,
         "fixSuggestion": "remove the import statement"
       },
       {
         "filePath": "repo/src/components/ui/dropdown-menu.tsx",
         "bugType": "IMPORT",
-        "lineNumber": 3,
+        "lineNumber": 1,
         "fixSuggestion": "remove the import statement"
       },
       {
         "filePath": "repo/src/components/ui/form.tsx",
         "bugType": "IMPORT",
-        "lineNumber": 3,
+        "lineNumber": 1,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/hover-card.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 1,
         "fixSuggestion": "remove the import statement"
       },
       {
@@ -238,73 +269,73 @@
       {
         "filePath": "repo/src/components/ui/label.tsx",
         "bugType": "IMPORT",
-        "lineNumber": 3,
+        "lineNumber": 1,
         "fixSuggestion": "remove the import statement"
       },
       {
         "filePath": "repo/src/components/ui/menubar.tsx",
         "bugType": "IMPORT",
-        "lineNumber": 3,
+        "lineNumber": 1,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/navigation-menu.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 1,
         "fixSuggestion": "remove the import statement"
       },
       {
         "filePath": "repo/src/components/ui/popover.tsx",
         "bugType": "IMPORT",
-        "lineNumber": 3,
+        "lineNumber": 1,
         "fixSuggestion": "remove the import statement"
       },
       {
         "filePath": "repo/src/components/ui/progress.tsx",
         "bugType": "IMPORT",
-        "lineNumber": 3,
+        "lineNumber": 1,
         "fixSuggestion": "remove the import statement"
       },
       {
         "filePath": "repo/src/components/ui/radio-group.tsx",
         "bugType": "IMPORT",
-        "lineNumber": 3,
+        "lineNumber": 1,
         "fixSuggestion": "remove the import statement"
       },
       {
         "filePath": "repo/src/components/ui/scroll-area.tsx",
         "bugType": "IMPORT",
-        "lineNumber": 3,
+        "lineNumber": 1,
         "fixSuggestion": "remove the import statement"
       },
       {
         "filePath": "repo/src/components/ui/select.tsx",
         "bugType": "IMPORT",
-        "lineNumber": 3,
+        "lineNumber": 1,
         "fixSuggestion": "remove the import statement"
       },
       {
         "filePath": "repo/src/components/ui/separator.tsx",
         "bugType": "IMPORT",
-        "lineNumber": 3,
+        "lineNumber": 1,
         "fixSuggestion": "remove the import statement"
       },
       {
         "filePath": "repo/src/components/ui/sheet.tsx",
         "bugType": "IMPORT",
-        "lineNumber": 3,
-        "fixSuggestion": "remove the import statement"
-      },
-      {
-        "filePath": "repo/src/components/ui/sidebar.tsx",
-        "bugType": "IMPORT",
-        "lineNumber": 3,
+        "lineNumber": 1,
         "fixSuggestion": "remove the import statement"
       },
       {
         "filePath": "repo/src/components/ui/slider.tsx",
         "bugType": "IMPORT",
-        "lineNumber": 3,
+        "lineNumber": 1,
         "fixSuggestion": "remove the import statement"
       },
       {
         "filePath": "repo/src/components/ui/switch.tsx",
         "bugType": "IMPORT",
-        "lineNumber": 3,
+        "lineNumber": 1,
         "fixSuggestion": "remove the import statement"
       },
       {
@@ -316,7 +347,7 @@
       {
         "filePath": "repo/src/components/ui/tabs.tsx",
         "bugType": "IMPORT",
-        "lineNumber": 3,
+        "lineNumber": 1,
         "fixSuggestion": "remove the import statement"
       },
       {
@@ -328,31 +359,103 @@
       {
         "filePath": "repo/src/components/ui/toast.tsx",
         "bugType": "IMPORT",
-        "lineNumber": 3,
+        "lineNumber": 1,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/toggle-group.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 1,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/toggle.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 1,
         "fixSuggestion": "remove the import statement"
       },
       {
         "filePath": "repo/src/components/ui/tooltip.tsx",
         "bugType": "IMPORT",
-        "lineNumber": 3,
+        "lineNumber": 1,
         "fixSuggestion": "remove the import statement"
       },
       {
-        "filePath": "repo/src/components/chat/academic-answer.tsx",
-        "bugType": "LINTING",
-        "lineNumber": 39,
-        "fixSuggestion": "remove trailing whitespace"
-      },
-      {
-        "filePath": "repo/src/components/chat/chat-input.tsx",
+        "filePath": "repo/src/components/pages/AnalyticsPage.tsx",
         "bugType": "LINTING",
         "lineNumber": 27,
         "fixSuggestion": "remove trailing whitespace"
       },
       {
-        "filePath": "repo/src/components/chat/chat-panel.tsx",
+        "filePath": "repo/src/components/pages/DashboardPage.tsx",
         "bugType": "LINTING",
-        "lineNumber": 62,
+        "lineNumber": 34,
+        "fixSuggestion": "remove trailing whitespace"
+      },
+      {
+        "filePath": "repo/src/components/pages/ExplorePage.tsx",
+        "bugType": "LINTING",
+        "lineNumber": 26,
+        "fixSuggestion": "remove trailing whitespace"
+      },
+      {
+        "filePath": "repo/src/components/pages/HomePage.tsx",
+        "bugType": "LINTING",
+        "lineNumber": 36,
+        "fixSuggestion": "remove trailing whitespace"
+      },
+      {
+        "filePath": "repo/src/components/pages/HubManagementPage.tsx",
+        "bugType": "LINTING",
+        "lineNumber": 36,
+        "fixSuggestion": "remove trailing whitespace"
+      },
+      {
+        "filePath": "repo/src/components/pages/ProfilePage.tsx",
+        "bugType": "LINTING",
+        "lineNumber": 31,
+        "fixSuggestion": "remove trailing whitespace"
+      },
+      {
+        "filePath": "repo/src/components/pages/PublicHubPage.tsx",
+        "bugType": "LINTING",
+        "lineNumber": 24,
+        "fixSuggestion": "remove trailing whitespace"
+      },
+      {
+        "filePath": "repo/integrations/members/service.ts",
+        "bugType": "LOGIC",
+        "lineNumber": 8,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/integrations/members/providers/MemberContext.tsx",
+        "bugType": "LINTING",
+        "lineNumber": 35,
+        "fixSuggestion": "remove trailing whitespace"
+      },
+      {
+        "filePath": "repo/integrations/cms/ecom-service.ts",
+        "bugType": "TYPE_ERROR",
+        "lineNumber": 33,
+        "fixSuggestion": "replace any with a concrete type"
+      },
+      {
+        "filePath": "repo/integrations/cms/service.ts",
+        "bugType": "TYPE_ERROR",
+        "lineNumber": 61,
+        "fixSuggestion": "replace any with a concrete type"
+      },
+      {
+        "filePath": "repo/eslint-rules/no-early-return-before-scroll-ref.ts",
+        "bugType": "LINTING",
+        "lineNumber": 2,
+        "fixSuggestion": "remove trailing whitespace"
+      },
+      {
+        "filePath": "repo/eslint-rules/use-image-component.ts",
+        "bugType": "LINTING",
+        "lineNumber": 63,
         "fixSuggestion": "remove trailing whitespace"
       }
     ]

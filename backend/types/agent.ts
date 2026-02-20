@@ -25,10 +25,18 @@ export interface TimelineEntry {
   retryLimit: number;
 }
 
+export interface DetectedIssue {
+  filePath: string;
+  bugType: BugType;
+  lineNumber: number;
+  fixSuggestion: string;
+}
+
 export interface AnalysisSummary {
   totalFiles: number;
   dominantLanguage: string;
   samplePaths: string[];
+  detectedIssues: DetectedIssue[];
 }
 
 export interface RunResult {

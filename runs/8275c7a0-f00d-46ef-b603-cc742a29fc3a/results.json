@@ -1,0 +1,76 @@
+{
+  "executionTime": 1,
+  "ciStatus": "passed",
+  "failuresCount": 0,
+  "fixesCount": 5,
+  "commitCount": 5,
+  "fixesTable": [
+    {
+      "filePath": "repo/Research-chatbot-assistant---AI-POWERED-ASSISTANT/src/App.tsx",
+      "bugType": "LINTING",
+      "lineNumber": 9,
+      "commitMessage": "fix(agent): remediate App.tsx (batch 1)",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/Research-chatbot-assistant---AI-POWERED-ASSISTANT/src/components/Dashboard.tsx",
+      "bugType": "SYNTAX",
+      "lineNumber": 10,
+      "commitMessage": "fix(agent): remediate Dashboard.tsx (batch 1)",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/Research-chatbot-assistant---AI-POWERED-ASSISTANT/src/components/InputForm.tsx",
+      "bugType": "LOGIC",
+      "lineNumber": 11,
+      "commitMessage": "fix(agent): remediate InputForm.tsx (batch 1)",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/Research-chatbot-assistant---AI-POWERED-ASSISTANT/src/services/api.ts",
+      "bugType": "TYPE_ERROR",
+      "lineNumber": 13,
+      "commitMessage": "fix(agent): remediate api.ts (batch 2)",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/Research-chatbot-assistant---AI-POWERED-ASSISTANT/src/utils/validation.ts",
+      "bugType": "IMPORT",
+      "lineNumber": 14,
+      "commitMessage": "fix(agent): remediate validation.ts (batch 2)",
+      "status": "passed"
+    }
+  ],
+  "timeline": [
+    {
+      "iteration": 1,
+      "result": "failed",
+      "timestamp": "2026-02-20T08:51:13.833Z",
+      "retryCount": 1,
+      "retryLimit": 5
+    },
+    {
+      "iteration": 2,
+      "result": "passed",
+      "timestamp": "2026-02-20T08:51:14.833Z",
+      "retryCount": 2,
+      "retryLimit": 5
+    }
+  ],
+  "baseScore": 100,
+  "speedBonus": 10,
+  "efficiencyPenalty": 0,
+  "repoUrl": "https://github.com/Kushagra-Garg-27/Research-chatbot-assistant---AI-POWERED-ASSISTANT",
+  "generatedBranchName": "GENZPT_TANISHA_AI_Fix",
+  "analysisSummary": {
+    "totalFiles": 120,
+    "dominantLanguage": "TypeScript",
+    "samplePaths": [
+      "repo/Research-chatbot-assistant---AI-POWERED-ASSISTANT/src/App.tsx",
+      "repo/Research-chatbot-assistant---AI-POWERED-ASSISTANT/src/components/Dashboard.tsx",
+      "repo/Research-chatbot-assistant---AI-POWERED-ASSISTANT/src/components/InputForm.tsx",
+      "repo/Research-chatbot-assistant---AI-POWERED-ASSISTANT/src/services/api.ts",
+      "repo/Research-chatbot-assistant---AI-POWERED-ASSISTANT/src/utils/validation.ts"
+    ]
+  }
+}

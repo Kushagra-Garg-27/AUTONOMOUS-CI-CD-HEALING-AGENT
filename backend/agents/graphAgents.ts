@@ -1,7 +1,6 @@
 import { Annotation, END, START, StateGraph } from '@langchain/langgraph';
 import { analyzeRepositoryInDocker } from '../services/dockerSandbox';
 import { generateBranchName } from '../services/branch';
-import { ALLOWED_BUG_TYPES } from '../types/agent';
 import type { AgentGraphState, FixRow, RunResult, TimelineEntry } from '../types/agent';
 
 export const AGENT_PIPELINE = ['planner', 'analyzer', 'remediator', 'scorer'] as const;
@@ -69,9 +68,9 @@ const computeTargetFixCount = (totalFiles: number, retryLimit: number, available
 
 const remediationAgent = async (state: AgentGraphState): Promise<Partial<AgentGraphState>> => {
   const retryLimit = state.retryLimit;
-  const availableTargets = state.analysisSummary.samplePaths;
+  const detectedIssues = Array.isArray(state.analysisSummary.detectedIssues) ? state.analysisSummary.detectedIssues : [];
 
-  if (availableTargets.length === 0) {
+  if (detectedIssues.length === 0) {
     return {
       timeline: [
         {
@@ -90,7 +89,7 @@ const remediationAgent = async (state: AgentGraphState): Promise<Partial<AgentGr
     };
   }
 
-  const targetFixCount = computeTargetFixCount(state.analysisSummary.totalFiles, retryLimit, availableTargets.length);
+  const targetFixCount = computeTargetFixCount(state.analysisSummary.totalFiles, retryLimit, detectedIssues.length);
   const iterationsNeeded = Math.min(retryLimit, Math.max(1, Math.ceil(targetFixCount / 3)));
   const fixesPerIteration = Math.max(1, Math.ceil(targetFixCount / iterationsNeeded));
 
@@ -112,16 +111,16 @@ const remediationAgent = async (state: AgentGraphState): Promise<Partial<AgentGr
     });
 
     for (let targetIndex = fixedSoFar; targetIndex < nextFixedCount; targetIndex += 1) {
-      const targetPath = availableTargets[targetIndex];
-      if (!targetPath) {
+      const issue = detectedIssues[targetIndex];
+      if (!issue) {
         continue;
       }
 
       fixesTable.push({
-        filePath: targetPath,
-        bugType: ALLOWED_BUG_TYPES[targetIndex % ALLOWED_BUG_TYPES.length],
-        lineNumber: 8 + ((targetIndex + iteration) % 40),
-        commitMessage: `fix(agent): remediate ${targetPath.split('/').pop() ?? 'file'} (batch ${iteration})`,
+        filePath: issue.filePath,
+        bugType: issue.bugType,
+        lineNumber: issue.lineNumber,
+        commitMessage: issue.fixSuggestion,
         status: 'passed',
       });
     }
@@ -188,6 +187,7 @@ export const runAgentGraph = async (input: {
       totalFiles: 0,
       dominantLanguage: 'Unknown',
       samplePaths: [],
+      detectedIssues: [],
     },
     fixesTable: [],
     timeline: [],

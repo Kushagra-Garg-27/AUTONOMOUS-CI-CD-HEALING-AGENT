@@ -5,7 +5,6 @@ const DashboardContext = createContext(null);
 const API_TIMEOUT_MS = 180000;
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
-const FALLBACK_BUG_TYPES = ['LINTING', 'SYNTAX', 'LOGIC', 'TYPE_ERROR', 'IMPORT'];
 const FIX_ACTION_BY_TYPE = {
   LINTING: 'remove the import statement',
   SYNTAX: 'correct the syntax',
@@ -37,34 +36,6 @@ const toLogLine = (item) => {
   const file = String(item.file || 'src/utils.py');
   const action = normalizeFixActionText(item.commitMessage, bugType);
   return `${bugType} error in ${file} line ${lineNumber} → Fix: ${action}`;
-};
-
-const buildFallbackFixes = (repoUrl) => {
-  const repoName = (() => {
-    try {
-      const pathname = new URL(repoUrl).pathname;
-      const lastSegment = pathname.split('/').filter(Boolean).pop();
-      return lastSegment || 'repo';
-    } catch {
-      return 'repo';
-    }
-  })();
-
-  const fallbackFiles = [
-    `repo/${repoName}/src/App.tsx`,
-    `repo/${repoName}/src/components/Dashboard.tsx`,
-    `repo/${repoName}/src/components/InputForm.tsx`,
-    `repo/${repoName}/src/services/api.ts`,
-    `repo/${repoName}/src/utils/validation.ts`,
-  ];
-
-  return fallbackFiles.map((file, index) => ({
-    file,
-    bugType: FALLBACK_BUG_TYPES[index % FALLBACK_BUG_TYPES.length],
-    lineNumber: 9 + index,
-    commitMessage: FIX_ACTION_BY_TYPE[FALLBACK_BUG_TYPES[index % FALLBACK_BUG_TYPES.length]],
-    status: 'FIXED',
-  }));
 };
 
 export const DashboardProvider = ({ children }) => {
@@ -133,14 +104,7 @@ export const DashboardProvider = ({ children }) => {
           }))
         : [];
 
-      const hasAnalysisData =
-        Number(result.analysisSummary?.totalFiles || 0) > 0 ||
-        (Array.isArray(result.analysisSummary?.samplePaths) && result.analysisSummary.samplePaths.length > 0);
-
-      const effectiveFixes =
-        normalizedFixes.length === 0 && !hasAnalysisData ? buildFallbackFixes(repoUrl) : normalizedFixes;
-
-      const formattedFixes = effectiveFixes.map((item) => ({
+      const formattedFixes = normalizedFixes.map((item) => ({
         ...item,
         logLine: toLogLine(item),
       }));

@@ -1,0 +1,344 @@
+{
+  "executionTime": 2,
+  "ciStatus": "passed",
+  "failuresCount": 0,
+  "fixesCount": 10,
+  "commitCount": 10,
+  "fixesTable": [
+    {
+      "filePath": "repo/test/express.json.js",
+      "bugType": "LOGIC",
+      "lineNumber": 728,
+      "commitMessage": "remove debug statement and finalize implementation",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/test/res.location.js",
+      "bugType": "LOGIC",
+      "lineNumber": 152,
+      "commitMessage": "remove debug statement and finalize implementation",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/examples/web-service/index.js",
+      "bugType": "LOGIC",
+      "lineNumber": 116,
+      "commitMessage": "remove debug statement and finalize implementation",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/examples/view-locals/index.js",
+      "bugType": "LOGIC",
+      "lineNumber": 154,
+      "commitMessage": "remove debug statement and finalize implementation",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/examples/view-constructor/index.js",
+      "bugType": "LOGIC",
+      "lineNumber": 47,
+      "commitMessage": "remove debug statement and finalize implementation",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/examples/vhost/index.js",
+      "bugType": "LOGIC",
+      "lineNumber": 38,
+      "commitMessage": "remove debug statement and finalize implementation",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/examples/static-files/index.js",
+      "bugType": "LOGIC",
+      "lineNumber": 39,
+      "commitMessage": "remove debug statement and finalize implementation",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/examples/session/index.js",
+      "bugType": "LOGIC",
+      "lineNumber": 36,
+      "commitMessage": "remove debug statement and finalize implementation",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/examples/session/redis.js",
+      "bugType": "LOGIC",
+      "lineNumber": 39,
+      "commitMessage": "remove debug statement and finalize implementation",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/examples/search/index.js",
+      "bugType": "LOGIC",
+      "lineNumber": 81,
+      "commitMessage": "remove debug statement and finalize implementation",
+      "status": "passed"
+    }
+  ],
+  "timeline": [
+    {
+      "iteration": 1,
+      "result": "failed",
+      "timestamp": "2026-02-20T09:00:31.298Z",
+      "retryCount": 1,
+      "retryLimit": 5
+    },
+    {
+      "iteration": 2,
+      "result": "failed",
+      "timestamp": "2026-02-20T09:00:32.298Z",
+      "retryCount": 2,
+      "retryLimit": 5
+    },
+    {
+      "iteration": 3,
+      "result": "failed",
+      "timestamp": "2026-02-20T09:00:33.298Z",
+      "retryCount": 3,
+      "retryLimit": 5
+    },
+    {
+      "iteration": 4,
+      "result": "passed",
+      "timestamp": "2026-02-20T09:00:34.298Z",
+      "retryCount": 4,
+      "retryLimit": 5
+    }
+  ],
+  "baseScore": 100,
+  "speedBonus": 10,
+  "efficiencyPenalty": 0,
+  "repoUrl": "https://github.com/expressjs/express",
+  "generatedBranchName": "TEAMA_TANISHA_AI_Fix",
+  "analysisSummary": {
+    "totalFiles": 141,
+    "dominantLanguage": "JavaScript",
+    "samplePaths": [
+      "repo/index.js",
+      "repo/test/app.all.js",
+      "repo/test/app.engine.js",
+      "repo/test/app.head.js",
+      "repo/test/app.js",
+      "repo/test/app.listen.js",
+      "repo/test/app.locals.js",
+      "repo/test/app.options.js",
+      "repo/test/app.param.js",
+      "repo/test/app.render.js",
+      "repo/test/app.request.js",
+      "repo/test/app.response.js",
+      "repo/test/app.route.js",
+      "repo/test/app.router.js",
+      "repo/test/app.routes.error.js",
+      "repo/test/app.use.js",
+      "repo/test/config.js",
+      "repo/test/exports.js",
+      "repo/test/express.json.js",
+      "repo/test/express.raw.js",
+      "repo/test/express.static.js",
+      "repo/test/express.text.js",
+      "repo/test/express.urlencoded.js",
+      "repo/test/middleware.basic.js",
+      "repo/test/regression.js",
+      "repo/test/req.accepts.js",
+      "repo/test/req.acceptsCharsets.js",
+      "repo/test/req.acceptsEncodings.js",
+      "repo/test/req.acceptsLanguages.js",
+      "repo/test/req.baseUrl.js",
+      "repo/test/req.fresh.js",
+      "repo/test/req.get.js",
+      "repo/test/req.host.js",
+      "repo/test/req.hostname.js",
+      "repo/test/req.ip.js",
+      "repo/test/req.ips.js",
+      "repo/test/req.is.js",
+      "repo/test/req.path.js",
+      "repo/test/req.protocol.js",
+      "repo/test/req.query.js",
+      "repo/test/req.range.js",
+      "repo/test/req.route.js",
+      "repo/test/req.secure.js",
+      "repo/test/req.signedCookies.js",
+      "repo/test/req.stale.js",
+      "repo/test/req.subdomains.js",
+      "repo/test/req.xhr.js",
+      "repo/test/res.append.js"
+    ],
+    "detectedIssues": [
+      {
+        "filePath": "repo/test/express.json.js",
+        "bugType": "LOGIC",
+        "lineNumber": 728,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/test/res.location.js",
+        "bugType": "LOGIC",
+        "lineNumber": 152,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/web-service/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 116,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/view-locals/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 154,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/view-constructor/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 47,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/vhost/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 38,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/static-files/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 39,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/session/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 36,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/session/redis.js",
+        "bugType": "LOGIC",
+        "lineNumber": 39,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/search/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 81,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/route-separation/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 54,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/route-middleware/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 89,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/route-map/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 24,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/resource/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 94,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/params/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 73,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/online/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 60,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/mvc/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 94,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/mvc/lib/boot.js",
+        "bugType": "LOGIC",
+        "lineNumber": 17,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/multi-router/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 17,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/markdown/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 43,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/hello-world/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 14,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/error-pages/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 102,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/error/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 52,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/ejs/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 56,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/downloads/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 39,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/cookies/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 52,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/cookie-sessions/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 24,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/content-negotiation/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 45,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      },
+      {
+        "filePath": "repo/examples/auth/index.js",
+        "bugType": "LOGIC",
+        "lineNumber": 61,
+        "fixSuggestion": "remove debug statement and finalize implementation"
+      }
+    ]
+  }
+}
