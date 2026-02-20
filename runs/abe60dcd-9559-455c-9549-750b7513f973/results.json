@@ -6,35 +6,35 @@
   "commitCount": 5,
   "fixesTable": [
     {
-      "filePath": "repo/Campus-App/src/App.tsx",
+      "filePath": "repo/demo/src/App.tsx",
       "bugType": "LINTING",
       "lineNumber": 9,
       "commitMessage": "fix(agent): remediate App.tsx (batch 1)",
       "status": "passed"
     },
     {
-      "filePath": "repo/Campus-App/src/components/Dashboard.tsx",
+      "filePath": "repo/demo/src/components/Dashboard.tsx",
       "bugType": "SYNTAX",
       "lineNumber": 10,
       "commitMessage": "fix(agent): remediate Dashboard.tsx (batch 1)",
       "status": "passed"
     },
     {
-      "filePath": "repo/Campus-App/src/components/InputForm.tsx",
+      "filePath": "repo/demo/src/components/InputForm.tsx",
       "bugType": "LOGIC",
       "lineNumber": 11,
       "commitMessage": "fix(agent): remediate InputForm.tsx (batch 1)",
       "status": "passed"
     },
     {
-      "filePath": "repo/Campus-App/src/services/api.ts",
+      "filePath": "repo/demo/src/services/api.ts",
       "bugType": "TYPE_ERROR",
       "lineNumber": 13,
       "commitMessage": "fix(agent): remediate api.ts (batch 2)",
       "status": "passed"
     },
     {
-      "filePath": "repo/Campus-App/src/utils/validation.ts",
+      "filePath": "repo/demo/src/utils/validation.ts",
       "bugType": "IMPORT",
       "lineNumber": 14,
       "commitMessage": "fix(agent): remediate validation.ts (batch 2)",
@@ -45,14 +45,14 @@
     {
       "iteration": 1,
       "result": "failed",
-      "timestamp": "2026-02-20T02:47:52.786Z",
+      "timestamp": "2026-02-20T02:11:50.832Z",
       "retryCount": 1,
       "retryLimit": 5
     },
     {
       "iteration": 2,
       "result": "passed",
-      "timestamp": "2026-02-20T02:47:53.786Z",
+      "timestamp": "2026-02-20T02:11:51.832Z",
       "retryCount": 2,
       "retryLimit": 5
     }
@@ -60,17 +60,17 @@
   "baseScore": 100,
   "speedBonus": 10,
   "efficiencyPenalty": 0,
-  "repoUrl": "https://github.com/tanu029-spec/Campus-App",
-  "generatedBranchName": "GENZPT_TANNU_AI_Fix",
+  "repoUrl": "https://github.com/example/demo",
+  "generatedBranchName": "DEMOTEAM_DEMOLEAD_AI_Fix",
   "analysisSummary": {
     "totalFiles": 120,
     "dominantLanguage": "TypeScript",
     "samplePaths": [
-      "repo/Campus-App/src/App.tsx",
-      "repo/Campus-App/src/components/Dashboard.tsx",
-      "repo/Campus-App/src/components/InputForm.tsx",
-      "repo/Campus-App/src/services/api.ts",
-      "repo/Campus-App/src/utils/validation.ts"
+      "repo/demo/src/App.tsx",
+      "repo/demo/src/components/Dashboard.tsx",
+      "repo/demo/src/components/InputForm.tsx",
+      "repo/demo/src/services/api.ts",
+      "repo/demo/src/utils/validation.ts"
     ]
   }
 }

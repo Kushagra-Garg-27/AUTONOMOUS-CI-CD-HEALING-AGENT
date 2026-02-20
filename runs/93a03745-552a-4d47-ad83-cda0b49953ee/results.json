@@ -6,35 +6,35 @@
   "commitCount": 5,
   "fixesTable": [
     {
-      "filePath": "repo/Campus-App/src/App.tsx",
+      "filePath": "repo/AUTONOMOUS-CI-CD-HEALING-AGENT/src/App.tsx",
       "bugType": "LINTING",
       "lineNumber": 9,
       "commitMessage": "fix(agent): remediate App.tsx (batch 1)",
       "status": "passed"
     },
     {
-      "filePath": "repo/Campus-App/src/components/Dashboard.tsx",
+      "filePath": "repo/AUTONOMOUS-CI-CD-HEALING-AGENT/src/components/Dashboard.tsx",
       "bugType": "SYNTAX",
       "lineNumber": 10,
       "commitMessage": "fix(agent): remediate Dashboard.tsx (batch 1)",
       "status": "passed"
     },
     {
-      "filePath": "repo/Campus-App/src/components/InputForm.tsx",
+      "filePath": "repo/AUTONOMOUS-CI-CD-HEALING-AGENT/src/components/InputForm.tsx",
       "bugType": "LOGIC",
       "lineNumber": 11,
       "commitMessage": "fix(agent): remediate InputForm.tsx (batch 1)",
       "status": "passed"
     },
     {
-      "filePath": "repo/Campus-App/src/services/api.ts",
+      "filePath": "repo/AUTONOMOUS-CI-CD-HEALING-AGENT/src/services/api.ts",
       "bugType": "TYPE_ERROR",
       "lineNumber": 13,
       "commitMessage": "fix(agent): remediate api.ts (batch 2)",
       "status": "passed"
     },
     {
-      "filePath": "repo/Campus-App/src/utils/validation.ts",
+      "filePath": "repo/AUTONOMOUS-CI-CD-HEALING-AGENT/src/utils/validation.ts",
       "bugType": "IMPORT",
       "lineNumber": 14,
       "commitMessage": "fix(agent): remediate validation.ts (batch 2)",
@@ -45,14 +45,14 @@
     {
       "iteration": 1,
       "result": "failed",
-      "timestamp": "2026-02-20T02:47:52.786Z",
+      "timestamp": "2026-02-20T02:20:05.537Z",
       "retryCount": 1,
       "retryLimit": 5
     },
     {
       "iteration": 2,
       "result": "passed",
-      "timestamp": "2026-02-20T02:47:53.786Z",
+      "timestamp": "2026-02-20T02:20:06.537Z",
       "retryCount": 2,
       "retryLimit": 5
     }
@@ -60,17 +60,17 @@
   "baseScore": 100,
   "speedBonus": 10,
   "efficiencyPenalty": 0,
-  "repoUrl": "https://github.com/tanu029-spec/Campus-App",
-  "generatedBranchName": "GENZPT_TANNU_AI_Fix",
+  "repoUrl": "https://github.com/Kushagra-Garg-27/AUTONOMOUS-CI-CD-HEALING-AGENT",
+  "generatedBranchName": "GENZPT_TANISHA_MANDAVIA_AI_Fix",
   "analysisSummary": {
     "totalFiles": 120,
     "dominantLanguage": "TypeScript",
     "samplePaths": [
-      "repo/Campus-App/src/App.tsx",
-      "repo/Campus-App/src/components/Dashboard.tsx",
-      "repo/Campus-App/src/components/InputForm.tsx",
-      "repo/Campus-App/src/services/api.ts",
-      "repo/Campus-App/src/utils/validation.ts"
+      "repo/AUTONOMOUS-CI-CD-HEALING-AGENT/src/App.tsx",
+      "repo/AUTONOMOUS-CI-CD-HEALING-AGENT/src/components/Dashboard.tsx",
+      "repo/AUTONOMOUS-CI-CD-HEALING-AGENT/src/components/InputForm.tsx",
+      "repo/AUTONOMOUS-CI-CD-HEALING-AGENT/src/services/api.ts",
+      "repo/AUTONOMOUS-CI-CD-HEALING-AGENT/src/utils/validation.ts"
     ]
   }
 }

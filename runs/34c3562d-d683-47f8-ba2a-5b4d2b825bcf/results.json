@@ -1,0 +1,27 @@
+{
+  "executionTime": 0,
+  "ciStatus": "failed",
+  "failuresCount": 1,
+  "fixesCount": 0,
+  "commitCount": 0,
+  "fixesTable": [],
+  "timeline": [
+    {
+      "iteration": 1,
+      "result": "failed",
+      "timestamp": "2026-02-20T02:08:39.445Z",
+      "retryCount": 1,
+      "retryLimit": 5
+    }
+  ],
+  "baseScore": 100,
+  "speedBonus": 0,
+  "efficiencyPenalty": 0,
+  "repoUrl": "https://github.com/tanu029-spec/Campus-App",
+  "generatedBranchName": "GENZPT_TANISHA_AI_Fix",
+  "analysisSummary": {
+    "totalFiles": 0,
+    "dominantLanguage": "Unknown",
+    "samplePaths": []
+  }
+}

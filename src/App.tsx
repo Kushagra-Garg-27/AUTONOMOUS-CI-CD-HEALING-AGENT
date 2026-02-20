@@ -34,7 +34,7 @@ function App() {
           <div className="relative">
             <p className="label">Autonomous DevOps Agent Dashboard</p>
             <h1 className="mt-2 bg-gradient-to-r from-slate-50 via-cyan-100 to-violet-200 bg-clip-text text-2xl font-bold text-transparent lg:text-3xl">
-              CI/CD Healing Control Plane
+              Autonomous CI/CD Healing Agent
             </h1>
             <p className="mt-2 max-w-3xl text-sm text-slate-300/90">
               Primary judging surface for autonomous repository remediation and pipeline convergence.

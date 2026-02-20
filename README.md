@@ -67,6 +67,7 @@ Create a `.env` file at repo root (or configure equivalent environment variables
 PORT=8080
 AGENT_RETRY_LIMIT=5
 GITHUB_TOKEN=<your_github_token>
+SANDBOX_ALLOW_MOCK=true
 ```
 
 Prerequisites:
@@ -143,6 +144,7 @@ Based on generated run artifacts (`runs/*/results.json`), current bug categories
 - In-memory run store (`Map`) is reset on backend restart.
 - Single latest result mirror (`public/results.json`) is overwritten each run.
 - Frontend currently assumes backend is available at `http://localhost:8080` in dev.
+- Without `GITHUB_TOKEN`, localhost runs in mock sandbox mode by default (`SANDBOX_ALLOW_MOCK=true`).
 
 ## Troubleshooting (Localhost)
 

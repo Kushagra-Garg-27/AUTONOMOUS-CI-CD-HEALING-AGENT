@@ -57,7 +57,7 @@ export default function App() {
       >
         <div className="perf-title-wrap">
           <span className="perf-kicker">AI-driven repository remediation and pipeline convergence engine</span>
-          <h2 className="perf-title">Autonomous CI/CD Healing Control Plane</h2>
+          <h2 className="perf-title">Autonomous CI/CD Healing Agent</h2>
         </div>
       </motion.header>
 
@@ -70,7 +70,7 @@ export default function App() {
         >
           <div className="hero-shell">
             <p className="hero-kicker">System Overview</p>
-            <h1 className="hero-title">Autonomous CI/CD Healing Control Plane</h1>
+            <h1 className="hero-title">Autonomous CI/CD Healing Agent</h1>
           </div>
 
           <motion.div variants={cardReveal} initial="hidden" animate="show">
