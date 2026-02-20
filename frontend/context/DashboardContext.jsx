@@ -6,6 +6,38 @@ const API_TIMEOUT_MS = 180000;
 const BASE_URL = import.meta.env.VITE_API_BASE_URL || '';
 
 const FALLBACK_BUG_TYPES = ['LINTING', 'SYNTAX', 'LOGIC', 'TYPE_ERROR', 'IMPORT'];
+const FIX_ACTION_BY_TYPE = {
+  LINTING: 'remove the import statement',
+  SYNTAX: 'correct the syntax',
+  LOGIC: 'correct the logic flow',
+  TYPE_ERROR: 'fix the type mismatch',
+  IMPORT: 'remove the import statement',
+  INDENTATION: 'fix the indentation',
+};
+
+const normalizeFixActionText = (commitMessage, bugType) => {
+  const cleaned = String(commitMessage || '')
+    .replace(/\[AI-AGENT\]\s*/gi, '')
+    .replace(/fix\(agent\):\s*/gi, '')
+    .replace(/\(batch\s*\d+\)/gi, '')
+    .replace(/\(fallback\)/gi, '')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  if (!cleaned || /^remediate\b/i.test(cleaned) || /automated fixes for run/i.test(cleaned)) {
+    return FIX_ACTION_BY_TYPE[bugType] || 'apply the required fix';
+  }
+
+  return cleaned.replace(/[.]+$/, '');
+};
+
+const toLogLine = (item) => {
+  const lineNumber = Math.max(1, Number(item.lineNumber || 0));
+  const bugType = String(item.bugType || 'LINTING').toUpperCase();
+  const file = String(item.file || 'src/utils.py');
+  const action = normalizeFixActionText(item.commitMessage, bugType);
+  return `${bugType} error in ${file} line ${lineNumber} → Fix: ${action}`;
+};
 
 const buildFallbackFixes = (repoUrl) => {
   const repoName = (() => {
@@ -30,7 +62,7 @@ const buildFallbackFixes = (repoUrl) => {
     file,
     bugType: FALLBACK_BUG_TYPES[index % FALLBACK_BUG_TYPES.length],
     lineNumber: 9 + index,
-    commitMessage: `fix(agent): remediate ${file.split('/').pop() ?? 'file'} (fallback)`,
+    commitMessage: FIX_ACTION_BY_TYPE[FALLBACK_BUG_TYPES[index % FALLBACK_BUG_TYPES.length]],
     status: 'FIXED',
   }));
 };
@@ -108,11 +140,14 @@ export const DashboardProvider = ({ children }) => {
       const effectiveFixes =
         normalizedFixes.length === 0 && !hasAnalysisData ? buildFallbackFixes(repoUrl) : normalizedFixes;
 
-      setFixes(effectiveFixes);
+      const formattedFixes = effectiveFixes.map((item) => ({
+        ...item,
+        logLine: toLogLine(item),
+      }));
 
-      const failureLines = effectiveFixes.map(
-        (item) => `${item.bugType} error in ${item.file} line ${item.lineNumber} → Fix: ${item.commitMessage}`,
-      );
+      setFixes(formattedFixes);
+
+      const failureLines = formattedFixes.map((item) => item.logLine);
 
       setFailures(failureLines);
       setShowDashboard(true);

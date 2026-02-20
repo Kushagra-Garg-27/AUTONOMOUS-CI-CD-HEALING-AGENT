@@ -91,7 +91,7 @@ export default function ScoreBreakdownCard() {
       <div className="score-body">
         <div className="score-lines">
           <div className="score-line">
-            <span>Base Score = 100</span>
+            <span>Base Score =</span>
             <span className="score-value">{baseScore}</span>
           </div>
           <div className="score-line">

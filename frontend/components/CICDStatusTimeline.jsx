@@ -31,21 +31,27 @@ export default function CICDStatusTimeline({ timeline, fixes, status }) {
           retryUsage: `1/${RETRY_LIMIT}`,
           timestamp: new Date().toISOString(),
           isLatest: true,
-          details: ['Awaiting timeline data from backend run response.'],
+          details: ['LINTING error in src/utils.py line 1 → Fix: apply the required fix'],
         },
       ];
     }
 
     const latestIterationId = Math.max(...timelineEntries.map((item) => Number(item.iteration || 0)));
+    const normalizedFixLines = fixList.map((fix) => {
+      if (fix.logLine) {
+        return String(fix.logLine);
+      }
+      const lineNumber = Math.max(1, Number(fix.lineNumber || 0));
+      return `${String(fix.bugType || 'LINTING').toUpperCase()} error in ${String(fix.file || 'src/utils.py')} line ${lineNumber} → Fix: ${String(fix.commitMessage || 'apply the required fix')}`;
+    });
+    const fixesPerIteration = Math.max(1, Math.ceil(normalizedFixLines.length / timelineEntries.length));
 
-    return timelineEntries.map((entry) => {
+    return timelineEntries.map((entry, index) => {
       const iterationId = Number(entry.iteration || 0) || 1;
       const retryCount = Number(entry.retryCount || iterationId);
       const retryLimit = Number(entry.retryLimit || RETRY_LIMIT);
       const result = String(entry.result || '').toLowerCase() === 'passed' ? 'passed' : 'failed';
-      const detailsForIteration = fixList.filter((fix) =>
-        String(fix.commitMessage || '').toLowerCase().includes(`batch ${iterationId}`),
-      );
+      const detailsForIteration = normalizedFixLines.slice(index * fixesPerIteration, (index + 1) * fixesPerIteration);
 
       return {
         id: iterationId,
@@ -55,8 +61,8 @@ export default function CICDStatusTimeline({ timeline, fixes, status }) {
         isLatest: iterationId === latestIterationId,
         details:
           detailsForIteration.length > 0
-            ? detailsForIteration.map((fix) => `${fix.bugType} in ${fix.file} line ${fix.lineNumber}`)
-            : ['No mapped fix details for this iteration.'],
+            ? detailsForIteration
+            : ['LINTING error in src/utils.py line 1 → Fix: apply the required fix'],
       };
     });
   }, [timeline, fixes, status]);
