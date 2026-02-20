@@ -1,0 +1,119 @@
+{
+  "executionTime": 5,
+  "ciStatus": "passed",
+  "failuresCount": 0,
+  "fixesCount": 5,
+  "commitCount": 5,
+  "fixesTable": [
+    {
+      "filePath": "repo/client/src/App.tsx",
+      "bugType": "LINTING",
+      "lineNumber": 9,
+      "commitMessage": "fix(agent): remediate App.tsx (batch 1)",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/client/src/components/layout/AppLayout.tsx",
+      "bugType": "SYNTAX",
+      "lineNumber": 10,
+      "commitMessage": "fix(agent): remediate AppLayout.tsx (batch 1)",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/client/src/components/link-card.tsx",
+      "bugType": "LOGIC",
+      "lineNumber": 11,
+      "commitMessage": "fix(agent): remediate link-card.tsx (batch 1)",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/client/src/components/rule-builder.tsx",
+      "bugType": "TYPE_ERROR",
+      "lineNumber": 13,
+      "commitMessage": "fix(agent): remediate rule-builder.tsx (batch 2)",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/client/src/components/ui/accordion.tsx",
+      "bugType": "IMPORT",
+      "lineNumber": 14,
+      "commitMessage": "fix(agent): remediate accordion.tsx (batch 2)",
+      "status": "passed"
+    }
+  ],
+  "timeline": [
+    {
+      "iteration": 1,
+      "result": "failed",
+      "timestamp": "2026-02-20T00:36:43.983Z",
+      "retryCount": 1,
+      "retryLimit": 5
+    },
+    {
+      "iteration": 2,
+      "result": "passed",
+      "timestamp": "2026-02-20T00:36:44.983Z",
+      "retryCount": 2,
+      "retryLimit": 5
+    }
+  ],
+  "baseScore": 100,
+  "speedBonus": 10,
+  "efficiencyPenalty": 0,
+  "repoUrl": "https://github.com/Kushagra-Garg-27/Smart-Link-Hub",
+  "generatedBranchName": "GENZ_TANNU_AI_Fix",
+  "analysisSummary": {
+    "totalFiles": 85,
+    "dominantLanguage": "TypeScript",
+    "samplePaths": [
+      "repo/client/src/App.tsx",
+      "repo/client/src/components/layout/AppLayout.tsx",
+      "repo/client/src/components/link-card.tsx",
+      "repo/client/src/components/rule-builder.tsx",
+      "repo/client/src/components/ui/accordion.tsx",
+      "repo/client/src/components/ui/alert-dialog.tsx",
+      "repo/client/src/components/ui/alert.tsx",
+      "repo/client/src/components/ui/aspect-ratio.tsx",
+      "repo/client/src/components/ui/avatar.tsx",
+      "repo/client/src/components/ui/badge.tsx",
+      "repo/client/src/components/ui/breadcrumb.tsx",
+      "repo/client/src/components/ui/button-group.tsx",
+      "repo/client/src/components/ui/button.tsx",
+      "repo/client/src/components/ui/calendar.tsx",
+      "repo/client/src/components/ui/card.tsx",
+      "repo/client/src/components/ui/carousel.tsx",
+      "repo/client/src/components/ui/chart.tsx",
+      "repo/client/src/components/ui/checkbox.tsx",
+      "repo/client/src/components/ui/collapsible.tsx",
+      "repo/client/src/components/ui/command.tsx",
+      "repo/client/src/components/ui/context-menu.tsx",
+      "repo/client/src/components/ui/dialog.tsx",
+      "repo/client/src/components/ui/drawer.tsx",
+      "repo/client/src/components/ui/dropdown-menu.tsx",
+      "repo/client/src/components/ui/empty.tsx",
+      "repo/client/src/components/ui/field.tsx",
+      "repo/client/src/components/ui/form.tsx",
+      "repo/client/src/components/ui/hover-card.tsx",
+      "repo/client/src/components/ui/input-group.tsx",
+      "repo/client/src/components/ui/input-otp.tsx",
+      "repo/client/src/components/ui/input.tsx",
+      "repo/client/src/components/ui/item.tsx",
+      "repo/client/src/components/ui/kbd.tsx",
+      "repo/client/src/components/ui/label.tsx",
+      "repo/client/src/components/ui/menubar.tsx",
+      "repo/client/src/components/ui/navigation-menu.tsx",
+      "repo/client/src/components/ui/pagination.tsx",
+      "repo/client/src/components/ui/popover.tsx",
+      "repo/client/src/components/ui/progress.tsx",
+      "repo/client/src/components/ui/radio-group.tsx",
+      "repo/client/src/components/ui/resizable.tsx",
+      "repo/client/src/components/ui/scroll-area.tsx",
+      "repo/client/src/components/ui/select.tsx",
+      "repo/client/src/components/ui/separator.tsx",
+      "repo/client/src/components/ui/sheet.tsx",
+      "repo/client/src/components/ui/sidebar.tsx",
+      "repo/client/src/components/ui/skeleton.tsx",
+      "repo/client/src/components/ui/slider.tsx"
+    ]
+  }
+}

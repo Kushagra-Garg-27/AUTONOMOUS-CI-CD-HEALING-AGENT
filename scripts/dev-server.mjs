@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import net from 'node:net';
 import { spawn } from 'node:child_process';
 
