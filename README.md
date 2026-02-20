@@ -15,16 +15,32 @@ AI-driven system that accepts a GitHub repository URL, analyzes source files in 
 
 ```mermaid
 flowchart LR
-		U[User - Dashboard UI] --> F[Frontend - React + Vite]
-		F -->|POST /api/agent/runs| B[Backend API - Express]
-		B --> G[LangGraph Orchestrator]
-		G --> P[planner]
-		P --> A[analyzer]
-		A --> R[remediator]
-		R --> S[scorer]
-		S --> W[(runs/<runId>/results.json)]
-		W --> PUB[(public/results.json)]
-		F -->|GET run + results APIs| B
+	U[User - Dashboard UI] --> F[Frontend - React + Vite]
+	F -->|POST /api/agent/run| B[Backend API - Orchestrator Service]
+
+	B --> G[Agent Controller]
+	G --> D[Docker Sandbox]
+
+	D --> C[Clone GitHub Repository]
+	C --> FL[Source File Filter]
+	FL --> T[Test Runner]
+
+	T -->|Failures Detected| A[Failure Analyzer]
+	A --> FX[Fix Generator]
+	FX --> CM[Commit Fixes to New Branch<br/>[AI-AGENT] Prefix]
+
+	CM --> GH[GitHub Repository]
+	GH --> CI[CI/CD Pipeline]
+
+	CI -->|Status| G
+	G -->|Iterate Until Pass| D
+
+	G --> R[(runs/<runId>/results.json)]
+	R --> PUB[(public/results.json)]
+
+	F -->|GET /api/agent/status| B
+	F -->|GET /api/agent/results| B
+	B --> PUB
 ```
 
 ## Project Structure
