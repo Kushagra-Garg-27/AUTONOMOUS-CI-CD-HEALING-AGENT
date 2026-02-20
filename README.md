@@ -1,4 +1,4 @@
-# Autonomous CI/CD Healing Control Plane
+# Autonomous CI/CD Healing Agent
 
 AI-driven system that accepts a GitHub repository URL, analyzes source files in a Docker sandbox, executes a LangGraph multi-agent remediation flow, and shows run metrics/fixes in a React dashboard.
 
