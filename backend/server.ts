@@ -153,3 +153,21 @@ app.listen(port, () => {
   // eslint-disable-next-line no-console
   console.log(`Agent API listening on http://localhost:${port}`);
 });
+app.post('/api/sandbox/callback', (req, res) => {
+  const { runId, status } = req.body;
+
+  console.log('Sandbox callback received:', req.body);
+
+  const run = runStore.get(runId);
+
+  if (!run) {
+    return res.status(404).json({ error: 'Run not found' });
+  }
+
+  run.status = status ?? 'completed';
+  run.finishedAt = new Date().toISOString();
+
+  runStore.set(runId, run);
+
+  res.json({ ok: true });
+});
