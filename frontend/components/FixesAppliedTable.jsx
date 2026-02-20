@@ -20,9 +20,9 @@ export default function FixesAppliedTable() {
       <div className="fix-surface-grid">
         {fixes.length > 0 ? (
           fixes.map((fix, index) => {
-            const commitMessage = fix.commitMessage.startsWith('[AI-AGENT]')
-              ? fix.commitMessage
-              : `[AI-AGENT] ${fix.commitMessage}`;
+            const normalizedLine =
+              fix.logLine ||
+              `${String(fix.bugType || 'LINTING').toUpperCase()} error in ${String(fix.file || 'src/utils.py')} line ${Math.max(1, Number(fix.lineNumber || 0))} → Fix: ${String(fix.commitMessage || 'apply the required fix')}`;
 
             return (
               <motion.article
@@ -58,8 +58,8 @@ export default function FixesAppliedTable() {
                 </div>
 
                 <div className="surface-field">
-                  <span className="surface-label">COMMIT MESSAGE</span>
-                  <p className="surface-commit">{commitMessage}</p>
+                  <span className="surface-label">FIX DETAILS</span>
+                  <p className="surface-commit">{normalizedLine}</p>
                 </div>
               </motion.article>
             );
