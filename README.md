@@ -27,7 +27,7 @@ flowchart LR
 
 	T -->|Failures Detected| A[Failure Analyzer]
 	A --> FX[Fix Generator]
-	FX --> CM[Commit Fixes to New Branch<br/>[AI-AGENT] Prefix]
+	FX --> CM["Commit Fixes to New Branch<br/>[AI-AGENT] Prefix"]
 
 	CM --> GH[GitHub Repository]
 	GH --> CI[CI/CD Pipeline]
