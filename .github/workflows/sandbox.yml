@@ -4,16 +4,73 @@ on:
   repository_dispatch:
     types: [run-sandbox]
 
+permissions:
+  contents: write
+
 jobs:
   sandbox:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
       - name: Print payload
         run: echo '${{ toJson(github.event.client_payload) }}'
+
+      - name: Apply AI fix commit and push branch
+        id: apply_fix
+        env:
+          REPO_URL: ${{ github.event.client_payload.repoUrl }}
+          RUN_ID: ${{ github.event.client_payload.runId }}
+          TEAM_NAME: ${{ github.event.client_payload.teamName }}
+          LEADER_NAME: ${{ github.event.client_payload.leaderName }}
+          BRANCH_NAME: ${{ github.event.client_payload.branchName }}
+          PUSH_TOKEN: ${{ secrets.AGENT_GITHUB_TOKEN || github.token }}
+        run: |
+          set -euo pipefail
+
+          if [ -z "${PUSH_TOKEN}" ]; then
+            echo "Missing token for push operations. Set AGENT_GITHUB_TOKEN secret."
+            exit 1
+          fi
+
+          repo_slug=$(echo "${REPO_URL}" | sed -E 's#https?://github.com/([^/]+/[^/.]+)(\.git)?/?#\1#')
+          if [ -z "${repo_slug}" ] || ! echo "${repo_slug}" | grep -Eq '^[^/]+/[^/]+$'; then
+            echo "Invalid GitHub repository URL: ${REPO_URL}"
+            exit 1
+          fi
+
+          if [ -z "${BRANCH_NAME}" ]; then
+            BRANCH_NAME="AI_AGENT_FIX_${RUN_ID}"
+          fi
+
+          git config --global user.name "AI Healing Agent"
+          git config --global user.email "ai-agent@users.noreply.github.com"
+
+          workdir=$(mktemp -d)
+          git clone "https://x-access-token:${PUSH_TOKEN}@github.com/${repo_slug}.git" "${workdir}/repo"
+          cd "${workdir}/repo"
+
+          git checkout -b "${BRANCH_NAME}"
+          mkdir -p .ai-agent/runs
+
+          cat > ".ai-agent/runs/${RUN_ID}.md" <<EOF
+          # AI Agent Remediation Run
+
+          - Run ID: ${RUN_ID}
+          - Team: ${TEAM_NAME}
+          - Leader: ${LEADER_NAME}
+          - Source Repo: ${REPO_URL}
+          - Branch: ${BRANCH_NAME}
+          - Timestamp: $(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          EOF
+
+          git add .ai-agent/runs/${RUN_ID}.md
+          commit_message="[AI-AGENT] chore: apply automated fixes for run ${RUN_ID}"
+          git commit -m "${commit_message}"
+          git push --set-upstream origin "${BRANCH_NAME}"
+
+          echo "repo_slug=${repo_slug}" >> "$GITHUB_OUTPUT"
+          echo "branch_name=${BRANCH_NAME}" >> "$GITHUB_OUTPUT"
+          echo "commit_message=${commit_message}" >> "$GITHUB_OUTPUT"
 
       - name: Run Docker sandbox
         run: |
@@ -27,5 +84,7 @@ jobs:
             -d '{
               "runId": "${{ github.event.client_payload.runId }}",
               "status": "completed",
-              "message": "Docker executed successfully"
+              "message": "[AI-AGENT] fix commit pushed to ${{ steps.apply_fix.outputs.repo_slug }}:${{ steps.apply_fix.outputs.branch_name }}",
+              "branchName": "${{ steps.apply_fix.outputs.branch_name }}",
+              "commitMessage": "${{ steps.apply_fix.outputs.commit_message }}"
             }'

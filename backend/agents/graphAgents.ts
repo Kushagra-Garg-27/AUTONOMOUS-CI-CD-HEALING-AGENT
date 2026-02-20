@@ -43,6 +43,7 @@ const analyzerAgent = async (state: AgentGraphState): Promise<Partial<AgentGraph
     repoUrl: state.repoUrl,
     teamName: state.teamName,
     leaderName: state.leaderName,
+    generatedBranchName: state.generatedBranchName,
   });
   return { analysisSummary };
 };
@@ -69,6 +70,26 @@ const computeTargetFixCount = (totalFiles: number, retryLimit: number, available
 const remediationAgent = async (state: AgentGraphState): Promise<Partial<AgentGraphState>> => {
   const retryLimit = state.retryLimit;
   const availableTargets = state.analysisSummary.samplePaths;
+
+  if (availableTargets.length === 0) {
+    return {
+      timeline: [
+        {
+          iteration: 1,
+          result: 'passed',
+          timestamp: new Date().toISOString(),
+          retryCount: 1,
+          retryLimit,
+        },
+      ],
+      fixesTable: [],
+      fixesCount: 0,
+      commitCount: 0,
+      failuresCount: 0,
+      ciStatus: 'passed',
+    };
+  }
+
   const targetFixCount = computeTargetFixCount(state.analysisSummary.totalFiles, retryLimit, availableTargets.length);
   const iterationsNeeded = Math.min(retryLimit, Math.max(1, Math.ceil(targetFixCount / 3)));
   const fixesPerIteration = Math.max(1, Math.ceil(targetFixCount / iterationsNeeded));

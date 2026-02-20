@@ -5,8 +5,9 @@ export const analyzeRepositoryInDocker = async (input: {
   repoUrl: string;
   teamName: string;
   leaderName: string;
+  generatedBranchName: string;
 }): Promise<AnalysisSummary> => {
-  const { runId, repoUrl, teamName, leaderName } = input;
+  const { runId, repoUrl, teamName, leaderName, generatedBranchName } = input;
 
   try {
     if (!process.env.GITHUB_TOKEN) {
@@ -29,6 +30,7 @@ export const analyzeRepositoryInDocker = async (input: {
             repoUrl,
             teamName,
             leaderName,
+            branchName: generatedBranchName,
           },
         }),
       },
