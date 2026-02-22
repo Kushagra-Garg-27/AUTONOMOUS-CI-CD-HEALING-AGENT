@@ -33,7 +33,7 @@ export const TerminalInfoSection = () => {
   const [teamName, setTeamName] = useState("");
   const [leaderName, setLeaderName] = useState("");
 
-  const terminalRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const canRun = useMemo(
@@ -45,8 +45,17 @@ export const TerminalInfoSection = () => {
   );
 
   useEffect(() => {
-    terminalRef.current?.focus();
-  }, []);
+    if (
+      isTypingPrompt ||
+      inputLocked ||
+      promptIndex >= PROMPTS.length ||
+      execution.status === "running"
+    ) {
+      return;
+    }
+
+    inputRef.current?.focus();
+  }, [execution.status, inputLocked, isTypingPrompt, promptIndex]);
 
   useEffect(() => {
     if (promptIndex >= PROMPTS.length) {
@@ -118,49 +127,19 @@ export const TerminalInfoSection = () => {
     setCurrentInput("");
   };
 
-  const onKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+  const onInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (
       inputLocked ||
       isTypingPrompt ||
       promptIndex >= PROMPTS.length ||
       execution.status === "running"
-    )
-      return;
-
-    if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === "v") {
-      event.preventDefault();
-      void navigator.clipboard
-        .readText()
-        .then((text) => {
-          const normalized = text.replace(/[\r\n]+/g, " ").trim();
-          if (normalized.length > 0) {
-            setCurrentInput((prev) => prev + normalized);
-          }
-        })
-        .catch(() => {});
+    ) {
       return;
     }
 
     if (event.key === "Enter") {
       event.preventDefault();
       commitInputValue(currentInput);
-      return;
-    }
-
-    if (event.key === "Backspace") {
-      event.preventDefault();
-      setCurrentInput((prev) => prev.slice(0, -1));
-      return;
-    }
-
-    if (
-      event.key.length === 1 &&
-      !event.ctrlKey &&
-      !event.metaKey &&
-      !event.altKey
-    ) {
-      event.preventDefault();
-      setCurrentInput((prev) => prev + event.key);
     }
   };
 
@@ -216,10 +195,6 @@ export const TerminalInfoSection = () => {
         }}
       >
         <div
-          ref={terminalRef}
-          tabIndex={0}
-          onClick={() => terminalRef.current?.focus()}
-          onKeyDown={onKeyDown}
           className="group relative overflow-hidden rounded-2xl border border-cyber-border/60 bg-cyber-black/90 backdrop-blur-xl font-mono text-white shadow-[0_30px_80px_rgba(0,0,0,0.7)] outline-none"
         >
           {/* Neon edge glow */}
@@ -307,10 +282,33 @@ export const TerminalInfoSection = () => {
             )}
 
             {!isTypingPrompt && promptIndex < PROMPTS.length && (
-              <div className="mb-1.5 whitespace-pre-wrap break-words text-white/90">
+              <div className="mb-1.5 flex items-baseline text-white/90">
                 <span className="text-white/30 mr-2">$</span>
-                {currentInput}
-                <span className="terminal-caret ml-0.5" />
+                <span className="relative min-w-0 flex-1 whitespace-pre-wrap break-words">
+                  <span aria-hidden>{currentInput}</span>
+                  <span className="terminal-caret ml-0.5" aria-hidden />
+                  <input
+                    ref={inputRef}
+                    value={currentInput}
+                    onChange={(event) => setCurrentInput(event.target.value)}
+                    onKeyDown={onInputKeyDown}
+                    disabled={
+                      inputLocked ||
+                      isTypingPrompt ||
+                      promptIndex >= PROMPTS.length ||
+                      execution.status === "running"
+                    }
+                    type={promptIndex === 0 ? "url" : "text"}
+                    inputMode={promptIndex === 0 ? "url" : "text"}
+                    enterKeyHint={promptIndex === PROMPTS.length - 1 ? "done" : "next"}
+                    autoCapitalize="none"
+                    autoCorrect="off"
+                    autoComplete="off"
+                    spellCheck={false}
+                    aria-label={PROMPTS[promptIndex]}
+                    className="absolute inset-0 w-full bg-transparent text-transparent caret-transparent outline-none"
+                  />
+                </span>
               </div>
             )}
 
