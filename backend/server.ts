@@ -8,6 +8,7 @@ import { randomUUID } from "node:crypto";
 import { AGENT_PIPELINE, runAgentGraph } from "./agents/graphAgents";
 import { generateBranchName } from "./services/branch";
 import { RunRepository, closePool } from "./persistence";
+import { validateRunPayload } from "./services/validatePayload";
 import type { RunResult } from "./types/agent";
 
 const app = express();
@@ -67,18 +68,12 @@ app.get("/api/agent/health", async (_req, res) => {
   }
 });
 
-app.post("/api/agent/runs", async (req, res) => {
-  const repoUrl = String(req.body?.repoUrl ?? "").trim();
-  const teamName = String(req.body?.teamName ?? "").trim();
-  const leaderName = String(req.body?.leaderName ?? "").trim();
+app.post("/api/agent/runs", validateRunPayload, async (req, res) => {
+  // Values are already sanitised & normalised by validateRunPayload middleware
+  const repoUrl = req.body.repoUrl as string;
+  const teamName = req.body.teamName as string;
+  const leaderName = req.body.leaderName as string;
   const retryLimit = clampRetryLimit(req.body?.retryLimit);
-
-  if (!repoUrl || !teamName || !leaderName) {
-    res
-      .status(400)
-      .json({ error: "repoUrl, teamName, and leaderName are required." });
-    return;
-  }
 
   const runId = randomUUID();
   const branchName = generateBranchName(teamName, leaderName);

@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom";
 import { GlowPulse } from "./motion/GlowPulse";
 import { Magnetic } from "./motion/Magnetic";
 import { Reveal } from "./motion/Reveal";
+import { useValidationFeedback } from "../hooks/useValidationFeedback";
+import { sanitise, normaliseGitHubUrl } from "../utils/validation";
 
 type Line = {
   kind: "prompt" | "input";
@@ -16,6 +18,12 @@ const PROMPTS = [
   "Enter Github Repository Link",
   "Enter Team Name",
   "Enter Team Leader Name",
+];
+
+const FIELD_FOR_PROMPT: ("repoUrl" | "teamName" | "leaderName")[] = [
+  "repoUrl",
+  "teamName",
+  "leaderName",
 ];
 
 export const TerminalInfoSection = () => {
@@ -35,6 +43,10 @@ export const TerminalInfoSection = () => {
 
   const inputRef = useRef<HTMLInputElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  // ── Validation feedback ──
+  const { feedback, onFieldChange, onFieldCommit, reset: resetFeedback } =
+    useValidationFeedback();
 
   const canRun = useMemo(
     () =>
@@ -105,26 +117,49 @@ export const TerminalInfoSection = () => {
   }, [lines, activePrompt, currentInput]);
 
   const commitInputValue = (value: string) => {
-    const trimmed = value.trim();
+    const trimmed = sanitise(value);
     if (!trimmed) return;
 
-    setLines((prev) => [...prev, { kind: "input", text: trimmed }]);
+    const field = FIELD_FOR_PROMPT[promptIndex];
+    if (!field) return;
+
+    // ── Validate before accepting ──
+    const error = onFieldCommit(field, trimmed);
+    if (error) {
+      // Show the error line in the terminal
+      setLines((prev) => [
+        ...prev,
+        { kind: "input", text: trimmed },
+        { kind: "prompt", text: `\u26A0 ${error.message}` },
+      ]);
+      setCurrentInput("");
+      return;
+    }
+
+    // Normalise repo URL before storing
+    const storedValue =
+      field === "repoUrl"
+        ? normaliseGitHubUrl(trimmed).normalised || trimmed
+        : trimmed;
+
+    setLines((prev) => [...prev, { kind: "input", text: storedValue }]);
 
     if (promptIndex === 0) {
-      setRepoUrl(trimmed);
-      setMetadata({ repoUrl: trimmed });
+      setRepoUrl(storedValue);
+      setMetadata({ repoUrl: storedValue });
       setPromptIndex(1);
     } else if (promptIndex === 1) {
-      setTeamName(trimmed);
-      setMetadata({ teamName: trimmed });
+      setTeamName(storedValue);
+      setMetadata({ teamName: storedValue });
       setPromptIndex(2);
     } else if (promptIndex === 2) {
-      setLeaderName(trimmed);
-      setMetadata({ leaderName: trimmed });
+      setLeaderName(storedValue);
+      setMetadata({ leaderName: storedValue });
       setPromptIndex(3);
     }
 
     setCurrentInput("");
+    resetFeedback();
   };
 
   const onInputKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -290,7 +325,12 @@ export const TerminalInfoSection = () => {
                   <input
                     ref={inputRef}
                     value={currentInput}
-                    onChange={(event) => setCurrentInput(event.target.value)}
+                    onChange={(event) => {
+                      const val = event.target.value;
+                      setCurrentInput(val);
+                      const field = FIELD_FOR_PROMPT[promptIndex];
+                      if (field) onFieldChange(field, val);
+                    }}
                     onKeyDown={onInputKeyDown}
                     disabled={
                       inputLocked ||
@@ -309,6 +349,62 @@ export const TerminalInfoSection = () => {
                     className="absolute inset-0 w-full bg-transparent text-transparent caret-transparent outline-none"
                   />
                 </span>
+
+                {/* Validation feedback indicator */}
+                <AnimatePresence mode="wait">
+                  {feedback.state !== "idle" && (
+                    <motion.span
+                      key={feedback.state}
+                      initial={{ opacity: 0, scale: 0.6 }}
+                      animate={{
+                        opacity: 1,
+                        scale: 1,
+                        x:
+                          feedback.shakeIntensity > 0
+                            ? [
+                                0,
+                                -3 * feedback.shakeIntensity,
+                                3 * feedback.shakeIntensity,
+                                -2 * feedback.shakeIntensity,
+                                2 * feedback.shakeIntensity,
+                                0,
+                              ]
+                            : 0,
+                      }}
+                      exit={{ opacity: 0, scale: 0.6 }}
+                      transition={{ duration: 0.35, ease: "easeOut" }}
+                      className="ml-2 flex-shrink-0 inline-flex items-center gap-1.5"
+                    >
+                      <span
+                        className="inline-block h-2 w-2 rounded-full"
+                        style={{
+                          backgroundColor: feedback.glowColor,
+                          boxShadow: `0 0 8px ${feedback.glowColor}`,
+                        }}
+                      />
+                      {feedback.message && (
+                        <span
+                          className="text-[10px] max-w-[200px] truncate"
+                          style={{ color: feedback.glowColor }}
+                        >
+                          {feedback.message}
+                        </span>
+                      )}
+                      {feedback.state === "checking" && (
+                        <motion.span
+                          className="inline-block h-3 w-3 rounded-full border border-current border-t-transparent"
+                          style={{ color: feedback.glowColor }}
+                          animate={{ rotate: 360 }}
+                          transition={{
+                            duration: 0.8,
+                            repeat: Infinity,
+                            ease: "linear",
+                          }}
+                        />
+                      )}
+                    </motion.span>
+                  )}
+                </AnimatePresence>
               </div>
             )}
 

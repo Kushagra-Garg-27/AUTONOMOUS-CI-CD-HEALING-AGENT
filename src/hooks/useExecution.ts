@@ -20,15 +20,21 @@ export const useExecution = () => {
   const [errors, setErrors] = useState<InputErrors>({});
 
   const runExecution = async (retryLimit: number) => {
-    const validationErrors = validateInputs(metadata.repoUrl, metadata.teamName, metadata.leaderName);
+    const result = validateInputs(metadata.repoUrl, metadata.teamName, metadata.leaderName);
+    const validationErrors: InputErrors = {};
+    for (const e of result.errors) {
+      validationErrors[e.field] = e.message;
+    }
     setErrors(validationErrors);
 
-    if (Object.keys(validationErrors).length > 0) {
+    if (!result.valid) {
       return;
     }
 
-    const branchName = generateBranchName(metadata.teamName, metadata.leaderName);
-    setMetadata({ generatedBranchName: branchName });
+    // Use sanitised + normalised values for the API call
+    const { repoUrl, teamName, leaderName } = result.sanitised;
+    const branchName = generateBranchName(teamName, leaderName);
+    setMetadata({ generatedBranchName: branchName, repoUrl, teamName, leaderName });
 
     // UX decision: lock all inputs immediately to prevent accidental edits while run state is active.
     lockInputs(true);
@@ -40,9 +46,9 @@ export const useExecution = () => {
 
     try {
       const response = await triggerAgentRun({
-        repoUrl: metadata.repoUrl,
-        teamName: metadata.teamName,
-        leaderName: metadata.leaderName,
+        repoUrl,
+        teamName,
+        leaderName,
         retryLimit,
       });
       const elapsedSeconds = Math.max(response.executionTime, Math.round((performance.now() - startedAt) / 1000));
