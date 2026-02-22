@@ -1,44 +1,360 @@
 {
-  "executionTime": 22,
+  "executionTime": 1,
   "ciStatus": "passed",
   "failuresCount": 0,
-  "fixesCount": 1,
-  "commitCount": 1,
+  "fixesCount": 4,
+  "commitCount": 4,
   "fixesTable": [
     {
-      "filePath": "repo/backend/services/audit.py",
+      "filePath": "repo/src/hooks/use-chat-sessions.ts",
       "bugType": "LINTING",
-      "lineNumber": 11,
-      "commitMessage": "fix(agent): remediation iteration 1",
+      "lineNumber": 60,
+      "commitMessage": "remove trailing whitespace",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/src/hooks/use-mobile.tsx",
+      "bugType": "IMPORT",
+      "lineNumber": 1,
+      "commitMessage": "remove the import statement",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/src/hooks/use-toast.ts",
+      "bugType": "IMPORT",
+      "lineNumber": 4,
+      "commitMessage": "remove the import statement",
+      "status": "passed"
+    },
+    {
+      "filePath": "repo/src/components/icons.tsx",
+      "bugType": "LINTING",
+      "lineNumber": 20,
+      "commitMessage": "remove trailing whitespace",
       "status": "passed"
     }
   ],
   "timeline": [
     {
       "iteration": 1,
-      "result": "passed",
-      "timestamp": "2026-02-19T18:20:38.725Z",
+      "result": "failed",
+      "timestamp": "2026-02-20T09:04:50.041Z",
       "retryCount": 1,
+      "retryLimit": 5
+    },
+    {
+      "iteration": 2,
+      "result": "passed",
+      "timestamp": "2026-02-20T09:04:51.041Z",
+      "retryCount": 2,
       "retryLimit": 5
     }
   ],
   "baseScore": 100,
   "speedBonus": 10,
   "efficiencyPenalty": 0,
-  "repoUrl": "https://github.com/Kushagra-Garg-27/SARaansh",
-  "generatedBranchName": "GENZPT_TANNU_AI_Fix",
+  "repoUrl": "https://github.com/Kushagra-Garg-27/Research-chatbot-assistant---AI-POWERED-ASSISTANT",
+  "generatedBranchName": "GENZPT_TANISHA_AI_Fix",
   "analysisSummary": {
-    "totalFiles": 22,
+    "totalFiles": 59,
     "dominantLanguage": "TypeScript",
     "samplePaths": [
-      "repo/backend/services/audit.py",
-      "repo/backend/services/cases.py",
-      "repo/backend/services/dashboard.py",
-      "repo/backend/services/reports.py",
-      "repo/App.tsx",
-      "repo/backend/db.py",
-      "repo/backend/main.py",
-      "repo/backend/models.py"
+      "repo/next.config.ts",
+      "repo/postcss.config.js",
+      "repo/tailwind.config.js",
+      "repo/src/lib/placeholder-images.ts",
+      "repo/src/lib/types.ts",
+      "repo/src/lib/utils.ts",
+      "repo/src/hooks/use-chat-sessions.ts",
+      "repo/src/hooks/use-mobile.tsx",
+      "repo/src/hooks/use-toast.ts",
+      "repo/src/components/icons.tsx",
+      "repo/src/components/ui/accordion.tsx",
+      "repo/src/components/ui/alert-dialog.tsx",
+      "repo/src/components/ui/alert.tsx",
+      "repo/src/components/ui/avatar.tsx",
+      "repo/src/components/ui/badge.tsx",
+      "repo/src/components/ui/button.tsx",
+      "repo/src/components/ui/calendar.tsx",
+      "repo/src/components/ui/card.tsx",
+      "repo/src/components/ui/carousel.tsx",
+      "repo/src/components/ui/chart.tsx",
+      "repo/src/components/ui/checkbox.tsx",
+      "repo/src/components/ui/collapsible.tsx",
+      "repo/src/components/ui/dialog.tsx",
+      "repo/src/components/ui/dropdown-menu.tsx",
+      "repo/src/components/ui/form.tsx",
+      "repo/src/components/ui/input.tsx",
+      "repo/src/components/ui/label.tsx",
+      "repo/src/components/ui/menubar.tsx",
+      "repo/src/components/ui/popover.tsx",
+      "repo/src/components/ui/progress.tsx",
+      "repo/src/components/ui/radio-group.tsx",
+      "repo/src/components/ui/scroll-area.tsx",
+      "repo/src/components/ui/select.tsx",
+      "repo/src/components/ui/separator.tsx",
+      "repo/src/components/ui/sheet.tsx",
+      "repo/src/components/ui/sidebar.tsx",
+      "repo/src/components/ui/skeleton.tsx",
+      "repo/src/components/ui/slider.tsx",
+      "repo/src/components/ui/switch.tsx",
+      "repo/src/components/ui/table.tsx",
+      "repo/src/components/ui/tabs.tsx",
+      "repo/src/components/ui/textarea.tsx",
+      "repo/src/components/ui/toast.tsx",
+      "repo/src/components/ui/toaster.tsx",
+      "repo/src/components/ui/tooltip.tsx",
+      "repo/src/components/chat/academic-answer.tsx",
+      "repo/src/components/chat/chat-input.tsx",
+      "repo/src/components/chat/chat-layout.tsx"
+    ],
+    "detectedIssues": [
+      {
+        "filePath": "repo/src/hooks/use-chat-sessions.ts",
+        "bugType": "LINTING",
+        "lineNumber": 60,
+        "fixSuggestion": "remove trailing whitespace"
+      },
+      {
+        "filePath": "repo/src/hooks/use-mobile.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 1,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/hooks/use-toast.ts",
+        "bugType": "IMPORT",
+        "lineNumber": 4,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/icons.tsx",
+        "bugType": "LINTING",
+        "lineNumber": 20,
+        "fixSuggestion": "remove trailing whitespace"
+      },
+      {
+        "filePath": "repo/src/components/ui/accordion.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/alert-dialog.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/alert.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 1,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/avatar.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/badge.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 1,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/button.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 1,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/calendar.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/calendar.tsx",
+        "bugType": "TYPE_ERROR",
+        "lineNumber": 65,
+        "fixSuggestion": "replace any with a concrete type"
+      },
+      {
+        "filePath": "repo/src/components/ui/card.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 1,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/carousel.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/chart.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/checkbox.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/collapsible.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/dialog.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/dropdown-menu.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/form.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/input.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 1,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/label.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/menubar.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/popover.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/progress.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/radio-group.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/scroll-area.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/select.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/separator.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/sheet.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/sidebar.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/slider.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/switch.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/table.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 1,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/tabs.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/textarea.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 1,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/toast.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/ui/tooltip.tsx",
+        "bugType": "IMPORT",
+        "lineNumber": 3,
+        "fixSuggestion": "remove the import statement"
+      },
+      {
+        "filePath": "repo/src/components/chat/academic-answer.tsx",
+        "bugType": "LINTING",
+        "lineNumber": 39,
+        "fixSuggestion": "remove trailing whitespace"
+      },
+      {
+        "filePath": "repo/src/components/chat/chat-input.tsx",
+        "bugType": "LINTING",
+        "lineNumber": 27,
+        "fixSuggestion": "remove trailing whitespace"
+      },
+      {
+        "filePath": "repo/src/components/chat/chat-panel.tsx",
+        "bugType": "LINTING",
+        "lineNumber": 62,
+        "fixSuggestion": "remove trailing whitespace"
+      }
     ]
   }
 }

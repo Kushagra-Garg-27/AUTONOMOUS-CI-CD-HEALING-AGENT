@@ -45,11 +45,10 @@ flowchart LR
 
 ## Project Structure
 
-- `frontend/` - Primary dashboard frontend (active UI)
+- `src/` - Primary dashboard frontend (active UI)
 - `backend/` - Express API and LangGraph multi-agent orchestration
 - `runs/` - Per-run `results.json` artifacts
 - `public/results.json` - Latest mirrored run result for UI consumption
-- `src/` - Legacy root frontend code (not canonical dashboard target)
 
 ## Installation Instructions
 
@@ -68,6 +67,9 @@ PORT=8080
 AGENT_RETRY_LIMIT=5
 GITHUB_TOKEN=<your_github_token>
 SANDBOX_ALLOW_MOCK=true
+
+# Optional: when hosting frontend separately from backend.
+# VITE_API_BASE_URL=https://your-backend.example.com
 ```
 
 Prerequisites:
@@ -88,7 +90,7 @@ npm run dev
 This starts:
 
 - backend server (`npm run dev:server`)
-- frontend app from `frontend/` (`npm run dev:client`)
+- frontend app from repo root (`npm run dev:client`)
 
 ### Build frontend
 
@@ -162,7 +164,7 @@ GITHUB_TOKEN=<your_github_personal_access_token>
 
 ## Team Members
 
-  final hackathon submission roster:
+final hackathon submission roster:
 
 - Tanisha Mandavia (Team Leader)
 - Kushagra Garg

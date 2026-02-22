@@ -1,25 +1,55 @@
 export const ALLOWED_BUG_TYPES = [
-  'LINTING',
-  'SYNTAX',
-  'LOGIC',
-  'TYPE_ERROR',
-  'IMPORT',
-  'INDENTATION',
+  "LINTING",
+  "SYNTAX",
+  "LOGIC",
+  "TYPE_ERROR",
+  "IMPORT",
+  "INDENTATION",
 ] as const;
 
 export type BugType = (typeof ALLOWED_BUG_TYPES)[number];
+
+/* ── Real execution types (added to close the test-execution gap) ── */
+
+export interface ProjectConfig {
+  type:
+    | 'node'
+    | 'python'
+    | 'go'
+    | 'java-maven'
+    | 'java-gradle'
+    | 'rust'
+    | 'dotnet'
+    | 'unknown';
+  dockerImage: string;
+  installCmd: string;
+  testCmd: string;
+  buildCmd: string;
+  hasTests: boolean;
+}
+
+export interface TestExecutionResult {
+  passed: boolean;
+  exitCode: number;
+  stdout: string;
+  stderr: string;
+  durationMs: number;
+  failedTests: string[];
+  errorSummary: string;
+  executionMethod: 'docker' | 'subprocess' | 'skipped';
+}
 
 export interface FixRow {
   filePath: string;
   bugType: BugType;
   lineNumber: number;
   commitMessage: string;
-  status: 'passed' | 'failed';
+  status: "passed" | "failed";
 }
 
 export interface TimelineEntry {
   iteration: number;
-  result: 'passed' | 'failed';
+  result: "passed" | "failed";
   timestamp: string;
   retryCount: number;
   retryLimit: number;
@@ -41,7 +71,7 @@ export interface AnalysisSummary {
 
 export interface RunResult {
   executionTime: number;
-  ciStatus: 'pending' | 'running' | 'passed' | 'failed';
+  ciStatus: "pending" | "running" | "passed" | "failed";
   failuresCount: number;
   fixesCount: number;
   commitCount: number;
@@ -53,9 +83,13 @@ export interface RunResult {
   repoUrl: string;
   generatedBranchName: string;
   analysisSummary: AnalysisSummary;
+  /** Real test/build execution results — added to close the execution gap. */
+  testResults: TestExecutionResult;
+  /** Auto-detected project type (node, python, go, etc.) */
+  projectType: string;
 }
 
-export type RunStatus = 'queued' | 'running' | 'completed' | 'failed';
+export type RunStatus = "queued" | "running" | "completed" | "failed";
 
 export interface RunRecord {
   id: string;
@@ -84,9 +118,15 @@ export interface AgentGraphState {
   failuresCount: number;
   fixesCount: number;
   commitCount: number;
-  ciStatus: 'pending' | 'running' | 'passed' | 'failed';
+  ciStatus: "pending" | "running" | "passed" | "failed";
   baseScore: number;
   speedBonus: number;
   efficiencyPenalty: number;
   executionTime: number;
+  clonePath: string;
+  currentIteration: number;
+  /** Auto-detected project configuration for real test execution. */
+  projectConfig: ProjectConfig;
+  /** Latest results from running the actual test suite / build. */
+  testResults: TestExecutionResult;
 }

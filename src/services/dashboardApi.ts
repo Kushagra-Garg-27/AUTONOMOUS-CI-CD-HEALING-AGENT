@@ -1,31 +1,43 @@
-import { ALLOWED_BUG_TYPES, type DashboardApiResult, type FixRow, type TimelineEntry } from '../types/dashboard';
+import {
+  ALLOWED_BUG_TYPES,
+  type DashboardApiResult,
+  type FixRow,
+  type TimelineEntry,
+} from "../types/dashboard";
+import { withApiBase } from "./api";
 
 const REQUEST_TIMEOUT_MS = 180000;
 
 const isObject = (value: unknown): value is Record<string, unknown> =>
-  typeof value === 'object' && value !== null;
+  typeof value === "object" && value !== null;
 
 const toNumber = (value: unknown, fallback = 0): number =>
-  typeof value === 'number' && Number.isFinite(value) ? value : fallback;
+  typeof value === "number" && Number.isFinite(value) ? value : fallback;
 
 const toFixRow = (row: unknown): FixRow | null => {
   if (!isObject(row)) {
     return null;
   }
 
-  const bugTypeRaw = typeof row.bugType === 'string' ? row.bugType.toUpperCase() : '';
-  const isAllowed = (ALLOWED_BUG_TYPES as readonly string[]).includes(bugTypeRaw);
+  const bugTypeRaw =
+    typeof row.bugType === "string" ? row.bugType.toUpperCase() : "";
+  const isAllowed = (ALLOWED_BUG_TYPES as readonly string[]).includes(
+    bugTypeRaw,
+  );
 
   if (!isAllowed) {
     return null;
   }
 
   return {
-    filePath: typeof row.filePath === 'string' ? row.filePath : 'unknown',
-    bugType: bugTypeRaw as FixRow['bugType'],
+    filePath: typeof row.filePath === "string" ? row.filePath : "unknown",
+    bugType: bugTypeRaw as FixRow["bugType"],
     lineNumber: toNumber(row.lineNumber),
-    commitMessage: typeof row.commitMessage === 'string' ? row.commitMessage : 'No commit message',
-    status: row.status === 'failed' ? 'failed' : 'passed',
+    commitMessage:
+      typeof row.commitMessage === "string"
+        ? row.commitMessage
+        : "No commit message",
+    status: row.status === "failed" ? "failed" : "passed",
   };
 };
 
@@ -41,8 +53,11 @@ const toTimelineEntry = (entry: unknown): TimelineEntry | null => {
 
   return {
     iteration,
-    result: entry.result === 'failed' ? 'failed' : 'passed',
-    timestamp: typeof entry.timestamp === 'string' ? entry.timestamp : new Date().toISOString(),
+    result: entry.result === "failed" ? "failed" : "passed",
+    timestamp:
+      typeof entry.timestamp === "string"
+        ? entry.timestamp
+        : new Date().toISOString(),
     retryCount: toNumber(entry.retryCount),
     retryLimit: toNumber(entry.retryLimit, 5),
   };
@@ -50,7 +65,7 @@ const toTimelineEntry = (entry: unknown): TimelineEntry | null => {
 
 export interface NormalizedApiResult {
   executionTime: number;
-  ciStatus: 'pending' | 'running' | 'passed' | 'failed';
+  ciStatus: "pending" | "running" | "passed" | "failed";
   failuresCount: number;
   fixesCount: number;
   commitCount: number;
@@ -70,22 +85,26 @@ interface TriggerRunPayload {
 
 const normalizePayload = (payload: DashboardApiResult): NormalizedApiResult => {
   const fixesTable = Array.isArray(payload.fixesTable)
-    ? payload.fixesTable.map(toFixRow).filter((value): value is FixRow => value !== null)
+    ? payload.fixesTable
+        .map(toFixRow)
+        .filter((value): value is FixRow => value !== null)
     : [];
 
   const timeline = Array.isArray(payload.timeline)
-    ? payload.timeline.map(toTimelineEntry).filter((value): value is TimelineEntry => value !== null)
+    ? payload.timeline
+        .map(toTimelineEntry)
+        .filter((value): value is TimelineEntry => value !== null)
     : [];
 
   return {
     executionTime: toNumber(payload.executionTime),
     ciStatus:
-      payload.ciStatus === 'pending' ||
-      payload.ciStatus === 'running' ||
-      payload.ciStatus === 'passed' ||
-      payload.ciStatus === 'failed'
+      payload.ciStatus === "pending" ||
+      payload.ciStatus === "running" ||
+      payload.ciStatus === "passed" ||
+      payload.ciStatus === "failed"
         ? payload.ciStatus
-        : 'pending',
+        : "pending",
     failuresCount: toNumber(payload.failuresCount),
     fixesCount: toNumber(payload.fixesCount),
     commitCount: toNumber(payload.commitCount),
@@ -97,32 +116,41 @@ const normalizePayload = (payload: DashboardApiResult): NormalizedApiResult => {
   };
 };
 
-export const triggerAgentRun = async (payload: TriggerRunPayload): Promise<NormalizedApiResult> => {
+export const triggerAgentRun = async (
+  payload: TriggerRunPayload,
+): Promise<NormalizedApiResult> => {
   const controller = new AbortController();
-  const timeout = window.setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+  const timeout = window.setTimeout(
+    () => controller.abort(),
+    REQUEST_TIMEOUT_MS,
+  );
 
   try {
-    const response = await fetch('/api/agent/runs', {
-      method: 'POST',
+    const response = await fetch(withApiBase("/api/agent/runs"), {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
       signal: controller.signal,
       body: JSON.stringify(payload),
     });
 
     if (!response.ok) {
-      const errorBody = (await response.json().catch(() => ({}))) as { error?: string };
+      const errorBody = (await response.json().catch(() => ({}))) as {
+        error?: string;
+      };
       throw new Error(errorBody.error ?? `API error: ${response.status}`);
     }
 
-    const body = (await response.json()) as { result?: DashboardApiResult } & DashboardApiResult;
+    const body = (await response.json()) as {
+      result?: DashboardApiResult;
+    } & DashboardApiResult;
     const result = body.result ?? body;
 
     return normalizePayload(result);
   } catch (error) {
-    if (error instanceof DOMException && error.name === 'AbortError') {
-      throw new Error('Request timed out while waiting for agent execution.');
+    if (error instanceof DOMException && error.name === "AbortError") {
+      throw new Error("Request timed out while waiting for agent execution.");
     }
 
     throw error;
