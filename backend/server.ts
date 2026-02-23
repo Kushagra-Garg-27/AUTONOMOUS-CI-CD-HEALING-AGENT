@@ -21,7 +21,92 @@ const workspaceRoot = path.resolve(__dirname, "..");
 const runsRoot = path.join(workspaceRoot, "runs");
 const publicResultsPath = path.join(workspaceRoot, "public", "results.json");
 
-app.use(cors());
+/* ── CORS — Enterprise-grade, environment-aware configuration ────────────
+ *
+ * • Production:  only the Vercel frontend is allowed.
+ * • Development: localhost origins on common dev ports are also allowed.
+ * • Origins are read from the CORS_ALLOWED_ORIGINS env var (comma-separated)
+ *   so they can be rotated without a code change.
+ * • The middleware is scoped to the /api namespace only — static assets and
+ *   health-check HTML pages are never decorated with CORS headers.
+ * ────────────────────────────────────────────────────────────────────────── */
+
+const PRODUCTION_ORIGINS = [
+  "https://autonomous-ci-cd-healing-agent.vercel.app",
+];
+
+const DEV_ORIGINS = [
+  "http://localhost:5173", // Vite default
+  "http://localhost:3000",
+  "http://localhost:4173", // Vite preview
+  "http://127.0.0.1:5173",
+  "http://127.0.0.1:3000",
+];
+
+const isProduction = process.env.NODE_ENV === "production";
+
+/** Build the final allowlist from env + hard-coded safe defaults. */
+const buildAllowedOrigins = (): Set<string> => {
+  const origins = new Set<string>(PRODUCTION_ORIGINS);
+
+  // Merge any extra origins supplied via env (useful for staging / preview URLs)
+  const envOrigins = process.env.CORS_ALLOWED_ORIGINS;
+  if (envOrigins) {
+    envOrigins
+      .split(",")
+      .map((o) => o.trim().replace(/\/+$/, ""))
+      .filter(Boolean)
+      .forEach((o) => origins.add(o));
+  }
+
+  // In non-production environments, also allow localhost origins
+  if (!isProduction) {
+    DEV_ORIGINS.forEach((o) => origins.add(o));
+  }
+
+  return origins;
+};
+
+const allowedOrigins = buildAllowedOrigins();
+
+console.log(
+  `[cors] Allowed origins (${isProduction ? "production" : "development"}):`,
+  [...allowedOrigins],
+);
+
+const corsOptions: cors.CorsOptions = {
+  /**
+   * Dynamic origin validation — never falls back to wildcard "*".
+   * If the request origin is not in the allowlist the callback receives
+   * `false`, which causes the cors package to omit the
+   * Access-Control-Allow-Origin header entirely (browser blocks the request).
+   */
+  origin(requestOrigin, callback) {
+    // Server-to-server calls (curl, Postman, etc.) have no Origin header.
+    // Allow these — they are not subject to browser CORS enforcement.
+    if (!requestOrigin) {
+      return callback(null, true);
+    }
+    if (allowedOrigins.has(requestOrigin)) {
+      return callback(null, requestOrigin);
+    }
+    console.warn(`[cors] Blocked request from disallowed origin: ${requestOrigin}`);
+    return callback(new Error("CORS: origin not allowed"), false);
+  },
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+  credentials: true,
+  optionsSuccessStatus: 204, // Some legacy browsers choke on 200 for preflight
+  maxAge: 86400, // Cache preflight for 24 h — reduces OPTIONS traffic
+};
+
+// Scoped to /api — only API routes get CORS headers
+app.use("/api", cors(corsOptions));
+
+// Explicit preflight handler for the /api namespace so that
+// no downstream route accidentally shadows the OPTIONS response.
+app.options("/api/*", cors(corsOptions));
+
 app.use(express.json());
 
 const clampRetryLimit = (value: unknown): number => {
