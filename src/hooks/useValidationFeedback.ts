@@ -79,10 +79,7 @@ export function useValidationFeedback() {
    * Call this on every keystroke / input change.
    */
   const onFieldChange = useCallback(
-    (
-      field: "repoUrl" | "teamName" | "leaderName",
-      value: string,
-    ) => {
+    (field: "repoUrl" | "teamName" | "leaderName", value: string) => {
       lastFieldRef.current = field;
       lastValueRef.current = value;
 

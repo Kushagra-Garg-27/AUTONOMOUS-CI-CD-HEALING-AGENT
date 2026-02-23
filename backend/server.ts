@@ -7,7 +7,7 @@ import { fileURLToPath } from "node:url";
 import { randomUUID } from "node:crypto";
 import { AGENT_PIPELINE, runAgentGraph } from "./agents/graphAgents";
 import { generateBranchName } from "./services/branch";
-import { RunRepository, closePool } from "./persistence";
+import { RunRepository, closePool, initPool, isPoolReady } from "./persistence";
 import { validateRunPayload } from "./services/validatePayload";
 import type { RunResult } from "./types/agent";
 
@@ -50,10 +50,11 @@ app.get("/api/agent/health", async (_req, res) => {
       `SELECT count(*) FROM runs WHERE status = 'running'`,
     );
     res.json({
-      ok: true,
+      status: "ok",
+      persistence: "postgres",
+      poolReady: isPoolReady(),
       defaultRetryLimit: DEFAULT_RETRY_LIMIT,
       activeRuns: Number(rows[0]?.count ?? 0),
-      persistence: "postgres",
       orchestration: {
         framework: "langgraph",
         mode: "multi-agent",
@@ -61,8 +62,11 @@ app.get("/api/agent/health", async (_req, res) => {
       },
     });
   } catch (err) {
+    console.error("[health] DB query failed:", err);
     res.status(503).json({
-      ok: false,
+      status: "error",
+      persistence: "postgres",
+      poolReady: isPoolReady(),
       error: err instanceof Error ? err.message : "Database unreachable",
     });
   }
@@ -174,9 +178,27 @@ app.get("/api/agent/runs/:runId/results", async (req, res) => {
   res.json(result);
 });
 
-const server = app.listen(port, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Agent API listening on http://localhost:${port}`);
+/* ── Boot: verify DB then start listening ── */
+
+const boot = async () => {
+  try {
+    await initPool();
+    console.log("[server] Database connection verified — starting HTTP server");
+  } catch (err) {
+    console.error(
+      "[server] ⚠ Database connection failed at startup. " +
+        "Server will start anyway, but /api/agent/health will report unhealthy.",
+    );
+    console.error("[server] Fix DATABASE_URL and redeploy.");
+  }
+};
+
+let server: ReturnType<typeof app.listen>;
+
+boot().then(() => {
+  server = app.listen(port, () => {
+    console.log(`Agent API listening on http://localhost:${port}`);
+  });
 });
 
 app.post("/api/sandbox/callback", async (req, res) => {
@@ -204,7 +226,7 @@ app.post("/api/sandbox/callback", async (req, res) => {
 
 const gracefulShutdown = async (signal: string) => {
   console.log(`\n[server] ${signal} received — shutting down…`);
-  server.close();
+  if (server) server.close();
   await closePool();
   process.exit(0);
 };

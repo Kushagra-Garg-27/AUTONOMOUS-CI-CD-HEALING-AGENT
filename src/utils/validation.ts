@@ -218,7 +218,11 @@ function validateName(
   }
   if (HTML_TAG_RE.test(raw)) {
     HTML_TAG_RE.lastIndex = 0;
-    return { field, code: "HTML_INJECTION", message: `${label} must not contain HTML.` };
+    return {
+      field,
+      code: "HTML_INJECTION",
+      message: `${label} must not contain HTML.`,
+    };
   }
   HTML_TAG_RE.lastIndex = 0;
 

@@ -46,67 +46,149 @@ interface ValidationResult {
 function sanitise(raw: unknown): string {
   if (typeof raw !== "string") return "";
   if (Buffer.byteLength(raw, "utf8") > MAX_FIELD_BYTES) {
-    return raw.slice(0, MAX_FIELD_BYTES).replace(INVISIBLE_OR_DANGEROUS_RE, "").replace(/\s+/g, " ").trim();
+    return raw
+      .slice(0, MAX_FIELD_BYTES)
+      .replace(INVISIBLE_OR_DANGEROUS_RE, "")
+      .replace(/\s+/g, " ")
+      .trim();
   }
-  return raw.replace(INVISIBLE_OR_DANGEROUS_RE, "").replace(HTML_TAG_RE, "").replace(/\s+/g, " ").trim();
+  return raw
+    .replace(INVISIBLE_OR_DANGEROUS_RE, "")
+    .replace(HTML_TAG_RE, "")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function normaliseGitHubUrl(raw: string) {
-  const fail = (error: string) => ({ valid: false as const, normalised: "", owner: "", repo: "", error });
+  const fail = (error: string) => ({
+    valid: false as const,
+    normalised: "",
+    owner: "",
+    repo: "",
+    error,
+  });
   const trimmed = raw.trim();
   if (!trimmed) return fail("URL is required.");
 
   let url: URL;
-  try { url = new URL(trimmed); } catch { return fail("Not a valid URL."); }
+  try {
+    url = new URL(trimmed);
+  } catch {
+    return fail("Not a valid URL.");
+  }
 
-  if (url.protocol !== "https:") return fail("Only HTTPS GitHub URLs are accepted.");
-  if (url.username || url.password) return fail("URLs must not contain credentials.");
+  if (url.protocol !== "https:")
+    return fail("Only HTTPS GitHub URLs are accepted.");
+  if (url.username || url.password)
+    return fail("URLs must not contain credentials.");
 
   const host = url.hostname.toLowerCase();
-  if (host !== "github.com" && host !== "www.github.com") return fail("URL must point to github.com.");
+  if (host !== "github.com" && host !== "www.github.com")
+    return fail("URL must point to github.com.");
 
-  const segments = url.pathname.replace(/\.git\/?$/, "").split("/").filter(Boolean);
-  if (segments.length < 2) return fail("URL must include owner and repository (github.com/owner/repo).");
+  const segments = url.pathname
+    .replace(/\.git\/?$/, "")
+    .split("/")
+    .filter(Boolean);
+  if (segments.length < 2)
+    return fail(
+      "URL must include owner and repository (github.com/owner/repo).",
+    );
 
   const [owner, repo] = segments;
-  if (!GH_SEGMENT_RE.test(owner)) return fail(`Invalid GitHub owner "${owner}".`);
-  if (!GH_SEGMENT_RE.test(repo)) return fail(`Invalid GitHub repository name "${repo}".`);
-  if (owner.length > 39) return fail("GitHub owner name too long (max 39 chars).");
-  if (repo.length > 100) return fail("GitHub repository name too long (max 100 chars).");
-  if (url.search.length > 1 || url.hash.length > 1) return fail("URL must not contain query parameters or fragments.");
+  if (!GH_SEGMENT_RE.test(owner))
+    return fail(`Invalid GitHub owner "${owner}".`);
+  if (!GH_SEGMENT_RE.test(repo))
+    return fail(`Invalid GitHub repository name "${repo}".`);
+  if (owner.length > 39)
+    return fail("GitHub owner name too long (max 39 chars).");
+  if (repo.length > 100)
+    return fail("GitHub repository name too long (max 100 chars).");
+  if (url.search.length > 1 || url.hash.length > 1)
+    return fail("URL must not contain query parameters or fragments.");
 
-  return { valid: true as const, normalised: `https://github.com/${owner}/${repo}`, owner, repo };
+  return {
+    valid: true as const,
+    normalised: `https://github.com/${owner}/${repo}`,
+    owner,
+    repo,
+  };
 }
 
 function validateRepoUrl(raw: string): FieldError | null {
   const value = sanitise(raw);
-  if (!value) return { field: "repoUrl", code: "REQUIRED", message: "GitHub URL is required." };
-  if (value.length > LIMITS.repoUrl.max) return { field: "repoUrl", code: "TOO_LONG", message: `URL exceeds ${LIMITS.repoUrl.max} characters.` };
+  if (!value)
+    return {
+      field: "repoUrl",
+      code: "REQUIRED",
+      message: "GitHub URL is required.",
+    };
+  if (value.length > LIMITS.repoUrl.max)
+    return {
+      field: "repoUrl",
+      code: "TOO_LONG",
+      message: `URL exceeds ${LIMITS.repoUrl.max} characters.`,
+    };
   const result = normaliseGitHubUrl(value);
-  if (!result.valid) return { field: "repoUrl", code: "INVALID_URL", message: result.error! };
+  if (!result.valid)
+    return { field: "repoUrl", code: "INVALID_URL", message: result.error! };
   return null;
 }
 
-function validateName(raw: string, field: "teamName" | "leaderName", label: string): FieldError | null {
+function validateName(
+  raw: string,
+  field: "teamName" | "leaderName",
+  label: string,
+): FieldError | null {
   const value = sanitise(raw);
-  if (!value) return { field, code: "REQUIRED", message: `${label} is required.` };
-  if (value.length < LIMITS[field].min) return { field, code: "TOO_SHORT", message: `${label} must be at least ${LIMITS[field].min} characters.` };
-  if (value.length > LIMITS[field].max) return { field, code: "TOO_LONG", message: `${label} must be at most ${LIMITS[field].max} characters.` };
-  if (HTML_TAG_RE.test(raw)) { HTML_TAG_RE.lastIndex = 0; return { field, code: "HTML_INJECTION", message: `${label} must not contain HTML.` }; }
+  if (!value)
+    return { field, code: "REQUIRED", message: `${label} is required.` };
+  if (value.length < LIMITS[field].min)
+    return {
+      field,
+      code: "TOO_SHORT",
+      message: `${label} must be at least ${LIMITS[field].min} characters.`,
+    };
+  if (value.length > LIMITS[field].max)
+    return {
+      field,
+      code: "TOO_LONG",
+      message: `${label} must be at most ${LIMITS[field].max} characters.`,
+    };
+  if (HTML_TAG_RE.test(raw)) {
+    HTML_TAG_RE.lastIndex = 0;
+    return {
+      field,
+      code: "HTML_INJECTION",
+      message: `${label} must not contain HTML.`,
+    };
+  }
   HTML_TAG_RE.lastIndex = 0;
-  if (!SAFE_NAME_RE.test(value)) return { field, code: "INVALID_CHARS", message: `${label} contains invalid characters.` };
+  if (!SAFE_NAME_RE.test(value))
+    return {
+      field,
+      code: "INVALID_CHARS",
+      message: `${label} contains invalid characters.`,
+    };
   return null;
 }
 
-function validateInputs(repoUrl: string, teamName: string, leaderName: string): ValidationResult {
+function validateInputs(
+  repoUrl: string,
+  teamName: string,
+  leaderName: string,
+): ValidationResult {
   const errors: FieldError[] = [];
   const sRepoUrl = sanitise(repoUrl);
   const sTeamName = sanitise(teamName);
   const sLeaderName = sanitise(leaderName);
 
-  const urlErr = validateRepoUrl(repoUrl);  if (urlErr) errors.push(urlErr);
-  const teamErr = validateName(teamName, "teamName", "Team name");  if (teamErr) errors.push(teamErr);
-  const leaderErr = validateName(leaderName, "leaderName", "Leader name");  if (leaderErr) errors.push(leaderErr);
+  const urlErr = validateRepoUrl(repoUrl);
+  if (urlErr) errors.push(urlErr);
+  const teamErr = validateName(teamName, "teamName", "Team name");
+  if (teamErr) errors.push(teamErr);
+  const leaderErr = validateName(leaderName, "leaderName", "Leader name");
+  if (leaderErr) errors.push(leaderErr);
 
   const urlResult = normaliseGitHubUrl(sRepoUrl);
   return {

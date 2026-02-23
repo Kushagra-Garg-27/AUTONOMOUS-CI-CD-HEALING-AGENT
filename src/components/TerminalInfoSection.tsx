@@ -45,8 +45,12 @@ export const TerminalInfoSection = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // ── Validation feedback ──
-  const { feedback, onFieldChange, onFieldCommit, reset: resetFeedback } =
-    useValidationFeedback();
+  const {
+    feedback,
+    onFieldChange,
+    onFieldCommit,
+    reset: resetFeedback,
+  } = useValidationFeedback();
 
   const canRun = useMemo(
     () =>
@@ -229,9 +233,7 @@ export const TerminalInfoSection = () => {
           ease: [0.25, 0.46, 0.45, 0.94],
         }}
       >
-        <div
-          className="group relative overflow-hidden rounded-2xl border border-cyber-border/60 bg-cyber-black/90 backdrop-blur-xl font-mono text-white shadow-[0_30px_80px_rgba(0,0,0,0.7)] outline-none"
-        >
+        <div className="group relative overflow-hidden rounded-2xl border border-cyber-border/60 bg-cyber-black/90 backdrop-blur-xl font-mono text-white shadow-[0_30px_80px_rgba(0,0,0,0.7)] outline-none">
           {/* Neon edge glow */}
           <div
             className="absolute inset-0 rounded-2xl pointer-events-none"
@@ -340,7 +342,9 @@ export const TerminalInfoSection = () => {
                     }
                     type={promptIndex === 0 ? "url" : "text"}
                     inputMode={promptIndex === 0 ? "url" : "text"}
-                    enterKeyHint={promptIndex === PROMPTS.length - 1 ? "done" : "next"}
+                    enterKeyHint={
+                      promptIndex === PROMPTS.length - 1 ? "done" : "next"
+                    }
                     autoCapitalize="none"
                     autoCorrect="off"
                     autoComplete="off"
