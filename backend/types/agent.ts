@@ -9,6 +9,14 @@ export const ALLOWED_BUG_TYPES = [
 
 export type BugType = (typeof ALLOWED_BUG_TYPES)[number];
 
+/* ── Re-export enterprise types for convenience ── */
+export type { FailureCategory, FailureClassification, RemediationStrategy } from '../services/failureClassifier.js';
+export type { PatchMetadata } from '../services/patchGuard.js';
+export type { PushStrategy, PushResult } from '../services/gitStrategy.js';
+export type { StrategyResult } from '../services/remediationStrategies.js';
+export type { CommitDecision, CommitContext } from '../services/commitStrategy.js';
+export type { ExecutionConstraints } from '../services/executionGuard.js';
+
 /* ── Real execution types (added to close the test-execution gap) ── */
 
 export interface ProjectConfig {
@@ -87,6 +95,19 @@ export interface RunResult {
   testResults: TestExecutionResult;
   /** Auto-detected project type (node, python, go, etc.) */
   projectType: string;
+  /** ── Enterprise Hardening Fields ── */
+  failureCategory?: string;
+  failureSummary?: string;
+  pushStrategy?: string;
+  prUrl?: string;
+  patchMetadata?: Array<{
+    iteration: number;
+    filesChanged: number;
+    linesAdded: number;
+    linesRemoved: number;
+    approved: boolean;
+    rejectionReason?: string;
+  }>;
 }
 
 export type RunStatus = "queued" | "running" | "completed" | "failed";
@@ -129,4 +150,19 @@ export interface AgentGraphState {
   projectConfig: ProjectConfig;
   /** Latest results from running the actual test suite / build. */
   testResults: TestExecutionResult;
+  /** ── Enterprise Hardening Fields ── */
+  /** Current failure classification */
+  failureCategory: string;
+  /** Human-readable failure summary */
+  failureSummary: string;
+  /** Raw stderr from last test execution */
+  rawStderr: string;
+  /** Push strategy used (direct | fork) */
+  pushStrategy: string;
+  /** Pull Request URL if fork+PR was used */
+  prUrl: string;
+  /** Snapshot SHA before last patch (for rollback) */
+  prePatChSnapshot: string;
+  /** Previous failure category (for severity comparison) */
+  previousFailureCategory: string;
 }

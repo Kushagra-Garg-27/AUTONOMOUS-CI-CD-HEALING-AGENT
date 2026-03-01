@@ -40,6 +40,12 @@ interface RunRow {
   finished_at: string | null;
   created_at: string;
   updated_at: string;
+  // Enterprise hardening fields
+  failure_category: string | null;
+  failure_summary: string | null;
+  raw_stderr: string | null;
+  push_strategy: string | null;
+  pr_url: string | null;
 }
 
 /* ── Mapping helpers ── */
@@ -169,6 +175,11 @@ export const RunRepository = {
       currentIteration?: number;
       analysisSummary?: AnalysisSummary;
       branchName?: string;
+      failureCategory?: string;
+      failureSummary?: string;
+      rawStderr?: string;
+      pushStrategy?: string;
+      prUrl?: string;
     },
   ): Promise<void> {
     const sets: string[] = [];
@@ -190,6 +201,11 @@ export const RunRepository = {
     addField("commit_count", data.commitCount);
     addField("current_iteration", data.currentIteration);
     addField("branch_name", data.branchName);
+    addField("failure_category", data.failureCategory);
+    addField("failure_summary", data.failureSummary);
+    addField("raw_stderr", data.rawStderr?.slice(0, 50000));
+    addField("push_strategy", data.pushStrategy);
+    addField("pr_url", data.prUrl);
 
     if (data.analysisSummary !== undefined) {
       sets.push(`analysis_summary = $${idx}`);
@@ -361,6 +377,11 @@ export const RunRepository = {
           testResult.execution_method as RunResult["testResults"]["executionMethod"],
       },
       projectType: run.project_type,
+      // Enterprise hardening fields
+      failureCategory: run.failure_category ?? undefined,
+      failureSummary: run.failure_summary ?? undefined,
+      pushStrategy: run.push_strategy ?? undefined,
+      prUrl: run.pr_url ?? undefined,
     };
   },
 

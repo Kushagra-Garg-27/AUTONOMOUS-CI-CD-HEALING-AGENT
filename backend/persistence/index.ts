@@ -16,3 +16,4 @@ export {
 export { RunRepository } from "./RunRepository.js";
 export { TestResultRepository } from "./TestResultRepository.js";
 export { PatchRepository } from "./PatchRepository.js";
+export { DiagnosticsRepository } from "./DiagnosticsRepository.js";

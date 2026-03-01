@@ -6,6 +6,7 @@ import { AGENT_PIPELINE } from "./agents/graphAgents.js";
 import { generateBranchName } from "./services/branch.js";
 import {
   RunRepository,
+  DiagnosticsRepository,
   closePool,
   initPool,
   isPoolReady,
@@ -202,6 +203,49 @@ app.get("/api/agent/runs/:runId/results", async (req, res) => {
     return;
   }
   res.json(result);
+});
+
+/* ── Phase 6: Diagnostics API — Structured Observability ── */
+
+app.get("/api/agent/runs/:runId/diagnostics", async (req, res) => {
+  try {
+    const run = await RunRepository.findById(req.params.runId);
+    if (!run) {
+      res.status(404).json({ error: "Run not found" });
+      return;
+    }
+
+    const diagnostics = await DiagnosticsRepository.findByRunId(req.params.runId);
+    const patchMetadata = await DiagnosticsRepository.findPatchMetadataByRunId(req.params.runId);
+
+    // Find final push info from diagnostics
+    const pushDiagnostic = diagnostics.find(d => d.pushStrategy);
+
+    res.json({
+      runId: req.params.runId,
+      status: run.status,
+      failureCategory: diagnostics[0]?.failureCategory ?? null,
+      remediationAttempts: diagnostics.filter(d => d.iteration > 0 && d.iteration < 100).length,
+      patchMetadata,
+      diagnostics: diagnostics.map(d => ({
+        iteration: d.iteration,
+        failureCategory: d.failureCategory,
+        failureSummary: d.failureSummary,
+        confidence: d.confidence,
+        strategy: d.strategyUsed,
+        strategyResult: d.strategyResult,
+        commitDecision: d.commitDecision,
+        commitReason: d.commitReason,
+        patchApproved: d.patchApproved,
+        diffSummary: d.diffSummary,
+      })),
+      gitStrategy: pushDiagnostic?.pushStrategy ?? null,
+      prUrl: pushDiagnostic?.prUrl ?? null,
+    });
+  } catch (err) {
+    console.error("[diagnostics] Error:", err);
+    res.status(500).json({ error: "Failed to retrieve diagnostics" });
+  }
 });
 
 /* ── Boot: verify DB then start listening ── */
